@@ -13,7 +13,7 @@ $theme_config = array();
 // 사용하지 않는 스킨 설정은 값을 비워두시면 됩니다.
 
 $theme_config = array(
-    'set_default_skin'          => false,   // 기본환경설정의 최근게시물 등의 기본스킨 변경여부 true, false
+    'set_default_skin'          => true,   // 기본환경설정의 최근게시물 등의 기본스킨 변경여부 true, false
     'preview_board_skin'        => 'basic', // 테마 미리보기 때 적용될 기본 게시판 스킨
     'preview_mobile_board_skin' => 'basic', // 테마 미리보기 때 적용될 기본 모바일 게시판 스킨
     'cf_member_skin'            => 'basic', // 회원 스킨

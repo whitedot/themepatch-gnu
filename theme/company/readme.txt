@@ -1,8 +1,8 @@
-Theme Name: 베이직
-Theme URI: http://theme.sir.kr/gnuboard5/demo/basic
+Theme Name: COMPANY
+Theme URI: http://theme.sir.co.kr/gnuboard5/demo/company
 Maker: SIR
-Maker URI: http://sir.kr
-Version: 3.0.0
-Detail: 베이직 테마는  SIR에서 제공하는 그누보드5 테마입니다. 베이직 테마는 웹표준 및 접근성을 준수합니다.
+Maker URI: http://sir.co.kr
+Version: 2.0.1
+Detail: 다양한 회사 홈페이지에 적용 시킬 수 있는 테마 입니다.
 License: GNU LESSER GENERAL PUBLIC LICENSE Version 2.1
 License URI: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html

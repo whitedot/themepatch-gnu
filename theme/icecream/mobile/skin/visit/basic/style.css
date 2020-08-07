@@ -1,11 +1,16 @@
 @charset "utf-8";
 
-#visit {position:relative;margin:15px 10px;background:#fff;border:1px solid #dde7e9}
-#visit h2 {line-height:24px;font-size:1.2em;margin:0 0 10px;padding:15px;border-bottom:1px solid #dde7e9}
-#visit dl{background:#fff;padding:15px 20px;border-radius:3px;line-height:20px}
+#visit {margin:30px 15px;background:#fff;border-radius:5px;position:relative}
+#visit h2{font-size:1.154em	;line-height:60px;padding:0 30px;border-bottom:1px solid #e3e3e3}
+#visit dl{background:#fff;padding:30px;border-radius:3px;line-height:30px;}
 #visit dl:after {display:block;visibility:hidden;clear:both;content:""}
-#visit dt {float:left;width:50%;position:relative;line-height:32px;padding-left:15px}
-#visit dt:after {position:absolute;left:0;top:13px;width:5px;height:5px;background:#3a8afd;content:"";border-radius:5px}
-#visit dd {float:left;width:50%;text-align:right;line-height:32px;color:#3a8afd}
-#visit a {display:inline-block;padding:10px 3px;text-decoration:none}
-#visit .btn_admin {position:absolute;top:0;right:15px}
+#visit dt {color: #888;float:left;width:50%}
+#visit dd {color: #888;float:left;width:50%;text-align:right}
+#visit a {display:inline-block;text-align:center;text-decoration:none;line-height:30px;padding:0 10px;vertical-align:middle;position:absolute;top:15px;right:15px}
+
+
+ 
+@media (max-width: 639px){
+    #visit{margin:15px 0 }
+}
+         

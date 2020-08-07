@@ -5,32 +5,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.$qa_skin_url.'/style.css">', 0);
 ?>
 
-<?php if ($admin_href || $write_href) { ?>
-<ul class="btn_top top btn_bo_user">
-    <?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
-	<?php if ($is_admin == 'super' || $is_auth) {  ?>
-	<li>
-		<button type="button" class="btn_more_opt btn_b03 btn"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
-		<?php if ($is_checkbox) { ?>	
-        <ul class="more_opt">
-            <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
-        </ul>
-        <?php } ?>
-
-        <script>
-        // 게시판 리스트 관리자 옵션
-		$(".btn_more_opt").on("click", function() {
-		    $(".more_opt").toggle();
-		})
-		</script>
-	</li>
-	<?php } ?>
-	<?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="fix_btn"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">문의등록</span></a></li><?php } ?>
-</ul>
-<?php } ?>
-
 <div id="bo_list">
-    <?php if ($category_option) { ?>
+
+    <form name="fqalist" id="fqalist" action="./qadelete.php" onsubmit="return fqalist_submit(this);" method="post">
+    <input type="hidden" name="stx" value="<?php echo $stx; ?>">
+    <input type="hidden" name="sca" value="<?php echo $sca; ?>">
+    <input type="hidden" name="page" value="<?php echo $page; ?>">
+	
+	<?php if ($category_option) { ?>
     <!-- 카테고리 시작 { -->
     <nav id="bo_cate">
         <h2><?php echo $qaconfig['qa_title'] ?> 카테고리</h2>
@@ -40,11 +22,37 @@ add_stylesheet('<link rel="stylesheet" href="'.$qa_skin_url.'/style.css">', 0);
     </nav>
     <!-- } 카테고리 끝 -->
     <?php } ?>
-
-    <form name="fqalist" id="fqalist" action="./qadelete.php" onsubmit="return fqalist_submit(this);" method="post">
-    <input type="hidden" name="stx" value="<?php echo $stx; ?>">
-    <input type="hidden" name="sca" value="<?php echo $sca; ?>">
-    <input type="hidden" name="page" value="<?php echo $page; ?>">
+    
+	<div id="bo_top_option">
+		<div id="bo_list_total">
+		    <span>전체 <?php echo number_format($total_count) ?>건</span>
+		    <?php echo $page ?> 페이지
+		</div>
+	
+		<?php if ($admin_href || $write_href) { ?>
+		<ul class="btn_top top btn_bo_user">
+		    <?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
+			<?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="fix_btn btn_b01 btn2"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">문의등록</span></a></li><?php } ?>
+			<?php if ($is_admin == 'super' || $is_auth) {  ?>
+			<li>
+				<button type="button" class="btn_more_opt btn_b01 btn2"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
+				<?php if ($is_checkbox) { ?>	
+		        <ul class="more_opt">
+		            <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
+		        </ul>
+		        <?php } ?>
+		
+		        <script>
+		        // 게시판 리스트 관리자 옵션
+				$(".btn_more_opt").on("click", function() {
+				    $(".more_opt").toggle();
+				})
+				</script>
+			</li>
+			<?php } ?>
+		</ul>
+		<?php } ?>
+	</div>
 
     <?php if ($is_checkbox) { ?>
     <div class="all_chk chk_box">
@@ -103,11 +111,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$qa_skin_url.'/style.css">', 0);
 
 <!-- 페이지 -->
 <?php echo $list_pages;  ?>
-
-<div id="bo_list_total">
-    <span>전체 <?php echo number_format($total_count) ?>건</span>
-    <?php echo $page ?> 페이지
-</div>
 
 <!-- 게시판 검색 시작 { -->
 <fieldset id="bo_sch">

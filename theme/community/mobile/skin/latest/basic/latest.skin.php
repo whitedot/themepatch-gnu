@@ -3,17 +3,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
 add_javascript('<script src="'.G5_JS_URL.'/owlcarousel/owl.carousel.min.js"></script>', 10);
+add_javascript('<script src="'.$latest_skin_url.'/latest.carousel.js"></script>', 11);
 add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/owlcarousel/owl.carousel.min.css">', 10);
 
-add_javascript('<script src="'.G5_JS_URL.'/tooltipster/tooltipster.bundle.min.js"></script>', 11);
-add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/tooltipster/tooltipster.bundle.min.css">', 11);
-add_javascript('<script src="'.$latest_skin_url.'/latest.carousel.js?v2"></script>', 12);
-
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.$latest_skin_url.'/style.css?v2">', 1);
+add_stylesheet('<link rel="stylesheet" href="'.$latest_skin_url.'/style.css">', 0);
 $thumb_width = 138;
 $thumb_height = 80;
-$list_count = (is_array($list) && $list) ? count($list) : 0;
+$list_count = count($list);
 $divisor_count = 4;
 $start_page_num = $list_count ? '1' : '0';
 $is_show_next_prev = ($list_count > 4) ? 1 : 0;
@@ -48,14 +45,13 @@ $is_show_next_prev = ($list_count > 4) ? 1 : 0;
                 else
                     echo $list[$i]['subject'];
 
-                    // if ($list[$i]['link']['count']) { echo "[{$list[$i]['link']['count']}]"; }
-                    // if ($list[$i]['file']['count']) { echo "<{$list[$i]['file']['count']}>"; }
-
-                if ($list[$i]['icon_new']) echo " <span class=\"new_icon\">N</span>";
-                if ($list[$i]['icon_file']) echo " <i class=\"fa fa-download\" aria-hidden=\"true\"></i>" ;
-                if ($list[$i]['icon_link']) echo " <i class=\"fa fa-link\" aria-hidden=\"true\"></i>" ;
-                if ($list[$i]['icon_hot']) echo " <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>";
-                
+                // if ($list[$i]['link']['count']) { echo "[{$list[$i]['link']['count']}]"; }
+	            // if ($list[$i]['file']['count']) { echo "<{$list[$i]['file']['count']}>"; }
+                if ($list[$i]['icon_hot']) echo "<span class=\"hot_icon\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i><span class=\"sound_only\">인기글</span></span>";
+				if ($list[$i]['icon_new']) echo "<span class=\"new_icon\">N<span class=\"sound_only\">새글</span></span>";
+	            if ($list[$i]['icon_file']) echo " <span class=\"download_icon\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i><span class=\"sound_only\">첨부파일</span></span>" ;
+	            if ($list[$i]['icon_link']) echo " <span class=\"link_icon\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i><span class=\"sound_only\">링크첨부</span></span>" ;
+	
                 if ($list[$i]['comment_cnt'])  echo "
                 <span class=\"lt_cmt\"><span class=\"sound_only\">댓글</span>".$list[$i]['comment_cnt']."</span>";
                 echo "</a>";

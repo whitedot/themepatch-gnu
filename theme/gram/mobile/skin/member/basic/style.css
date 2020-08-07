@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 /* ### 기본 스타일 커스터마이징 시작 ### */
-.mbskin {text-align:center;margin:20px auto}
+.mbskin {text-align:center;margin:20px auto;padding:0 20px}
 .mbskin h1 {font-size:1.75em;margin:40px 0 25px}
 .mbskin p {padding-bottom:20px;border-bottom:1px solid #c8c8c8}
 .mbskin p strong {color:#4162ff;padding-bottom:5px;display:block;font-size:1.083em}
@@ -12,7 +12,7 @@
 .mbskin a.btn02 {}
 .mbskin a.btn02:focus, .mbskin .btn02:hover {}
 .mbskin .btn_confirm {} /* 서식단계 진행 */
-.mbskin .btn_submit {display:block;width:100%;height:40px;line-height:40px;padding:0 10px;border:0;font-weight:bold;background:#3a8afd;color:#fff;border-radius:3px}
+.mbskin .btn_submit {display:block;width:100%;height:40px;line-height:40px;padding:0 10px;border:0;font-weight:bold;background:#ff4a49;color:#fff;border-radius:3px}
 .mbskin .btn_cancel {}
 .mbskin .btn_frmline {} /* 우편번호검색버튼 등 */
 .mbskin .win_btn {} /* 새창용 */
@@ -157,7 +157,7 @@
 #find_info #captcha {margin:5px 0}
 
 /* 로그인 */
-#mb_login {}
+#mb_login {max-width:380px;width:100%}
 #mb_login h1 {font-size:2em;text-align:center;margin:30px 0 20px}
 #mb_login h2 {margin:0}
 #mb_login p {padding:10px 0;line-height:1.5em}

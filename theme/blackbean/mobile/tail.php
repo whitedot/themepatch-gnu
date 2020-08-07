@@ -2,13 +2,17 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
     </div>
+	<?php echo poll('theme/basic'); // 설문조사 ?>
+	<?php echo visit('theme/basic'); // 방문자수 ?>
 </div>
 
-
-<?php echo poll('theme/basic'); // 설문조사 ?>
-<?php echo visit('theme/basic'); // 방문자수 ?>
-
-
+<div id="text_size">
+<!-- font_resize('엘리먼트id', '제거할 class', '추가할 class'); -->
+    <button id="size_down" onclick="font_resize('container', 'ts_up ts_up2', '', this);" class="select"><img src="<?php echo G5_URL; ?>/img/ts01.png" width="20" alt="기본"></button>
+    <button id="size_def" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up', this);"><img src="<?php echo G5_URL; ?>/img/ts02.png" width="20" alt="크게"></button>
+    <button id="size_up" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up2', this);"><img src="<?php echo G5_URL; ?>/img/ts03.png" width="20" alt="더크게"></button>
+</div>
+            
 <div id="ft">
     <div id="ft_copy">
         <div id="ft_company">
@@ -17,17 +21,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <a href="<?php echo get_pretty_url('content', 'provision'); ?>">서비스이용약관</a>
         </div>
         Copyright &copy; <b>소유하신 도메인.</b> All rights reserved.<br>
-    </div>
-    <div class="ft_cnt">
-    	<h2>사이트 정보</h2>
-        <p class="ft_info">
-        	회사명 : 회사명 / 대표 : 대표자명<br>
-			주소  : OO도 OO시 OO구 OO동 123-45<br>
-			사업자 등록번호  : 123-45-67890<br>
-			전화 :  02-123-4567  팩스  : 02-123-4568<br>
-			통신판매업신고번호 :  제 OO구 - 123호<br>
-			개인정보관리책임자 :  정보책임자명<br>
-		</p>
     </div>
     <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span></button>
     <?php

@@ -7,48 +7,47 @@ add_stylesheet('<link rel="stylesheet" href="'.$outlogin_skin_url.'/style.css">'
 
 <!-- 로그인 전 아웃로그인 시작 { -->
 <section id="ol_before" class="ol">
-	<div id="ol_be_cate">
-    	<h2><span class="sound_only">회원</span>로그인</h2>
-    	<a href="<?php echo G5_BBS_URL ?>/register.php" class="join">회원가입</a>
-    </div>
+	<h2>회원로그인</h2>
     <form name="foutlogin" action="<?php echo $outlogin_action_url ?>" onsubmit="return fhead_submit(this);" method="post" autocomplete="off">
     <fieldset>
         <div class="ol_wr">
             <input type="hidden" name="url" value="<?php echo $outlogin_url ?>">
             <label for="ol_id" id="ol_idlabel" class="sound_only">회원아이디<strong>필수</strong></label>
-            <input type="text" id="ol_id" name="mb_id" required maxlength="20" placeholder="아이디">
+            <span class="ol_tit">아이디</span>
+            <input type="text" id="ol_id" name="mb_id" required maxlength="20">
             <label for="ol_pw" id="ol_pwlabel" class="sound_only">비밀번호<strong>필수</strong></label>
-            <input type="password" name="mb_password" id="ol_pw" required maxlength="20" placeholder="비밀번호">
-            <input type="submit" id="ol_submit" value="로그인" class="btn_b02">
-        </div>
-        <div class="ol_auto_wr"> 
+            <span class="ol_tit">비밀번호</span>
+            <input type="password" name="mb_password" id="ol_pw" required maxlength="20">
+            
             <div id="ol_auto" class="chk_box">
                 <input type="checkbox" name="auto_login" value="1" id="auto_login" class="selec_chk">
                 <label for="auto_login" id="auto_login_label"><span></span>자동로그인</label>
             </div>
-            <div id="ol_svc">
-                <a href="<?php echo G5_BBS_URL ?>/password_lost.php" id="ol_password_lost">정보찾기</a>
-            </div>
+            <button type="submit" id="ol_submit" class="btn_b02">로그인</button>
         </div>
         <?php
         // 소셜로그인 사용시 소셜로그인 버튼
-        @include_once(get_social_skin_path().'/social_login.skin.php');
+        @include_once(get_social_skin_path().'/social_outlogin.skin.1.php');
         ?>
-
     </fieldset>
     </form>
+    
+    <div id="ol_svc">
+        <a href="<?php echo G5_BBS_URL ?>/register.php"><b>회원가입</b></a>
+        <a href="<?php echo G5_BBS_URL ?>/password_lost.php" id="ol_password_lost">정보찾기</a>
+    </div>
 </section>
+<button class="login_cls_btn"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
 
 <script>
-jQuery(function($) {
+$omi = $('#ol_id');
+$omp = $('#ol_pw');
+$omi_label = $('#ol_idlabel');
+$omi_label.addClass('ol_idlabel');
+$omp_label = $('#ol_pwlabel');
+$omp_label.addClass('ol_pwlabel');
 
-    var $omi = $('#ol_id'),
-        $omp = $('#ol_pw'),
-        $omi_label = $('#ol_idlabel'),
-        $omp_label = $('#ol_pwlabel');
-
-    $omi_label.addClass('ol_idlabel');
-    $omp_label.addClass('ol_pwlabel');
+$(function() {
 
     $("#auto_login").click(function(){
         if ($(this).is(":checked")) {

@@ -2,7 +2,7 @@
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 ?>
 
-<section id="bo_v_ans">
+<section id="bo_v_ans" class="bo_v_frm">
     <?php
     if($is_admin) // 관리자이면 답변등록
     {
@@ -49,7 +49,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     </div>
 
     <div class="btn_confirm">
-        <input type="submit" value="답변쓰기" id="btn_submit" accesskey="s" class="btn_submit">
+        <button type="submit" id="btn_submit" accesskey="s" class="btn_submit">작성완료</button>
     </div>
     </form>
 

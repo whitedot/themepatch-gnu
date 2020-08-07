@@ -4,7 +4,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // 테마가 지원하는 장치 설정 pc, mobile
 // 선언하지 않거나 값을 지정하지 않으면 그누보드5의 설정을 따른다.
 // G5_SET_DEVICE 상수 설정 보다 우선 적용됨
-define('G5_THEME_DEVICE', '');
+define('G5_THEME_DEVICE', 'mobile');
 
 $theme_config = array();
 
@@ -26,11 +26,11 @@ $theme_config = array(
     'cf_mobile_connect_skin'    => 'basic', // 모바일 접속자 스킨
     'cf_faq_skin'               => 'basic', // FAQ 스킨
     'cf_mobile_faq_skin'        => 'basic', // 모바일 FAQ 스킨
-    'bo_gallery_cols'           => 3,       // 갤러리 이미지 수
-    'bo_gallery_width'          => 295,     // 갤러리 이미지 폭
-    'bo_gallery_height'         => 200,     // 갤러리 이미지 높이
-    'bo_mobile_gallery_width'   => 125,     // 모바일 갤러리 이미지 폭
-    'bo_mobile_gallery_height'  => 100,     // 모바일 갤러리 이미지 높이
+    'bo_gallery_cols'           => 4,       // 갤러리 이미지 수
+    'bo_gallery_width'          => 210,     // 갤러리 이미지 폭
+    'bo_gallery_height'         => 150,     // 갤러리 이미지 높이
+    'bo_mobile_gallery_width'   => 300,     // 모바일 갤러리 이미지 폭
+    'bo_mobile_gallery_height'  => 300,     // 모바일 갤러리 이미지 높이
     'bo_image_width'            => 600,     // 게시판 뷰 이미지 폭
     'qa_skin'                   => 'basic', // 1:1문의 스킨
     'qa_mobile_skin'            => 'basic'  // 1:1문의 모바일 스킨

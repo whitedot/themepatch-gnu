@@ -110,6 +110,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
                 $i = 0;
                 foreach( $menu_datas as $row ){
                     if( empty($row) ) continue;
+
                     $add_class = (isset($row['sub']) && $row['sub']) ? 'gnb_al_li_plus' : '';
                 ?>
                 <li class="gnb_1dli <?php echo $add_class; ?>" style="z-index:<?php echo $gnb_zindex--; ?>">

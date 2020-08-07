@@ -107,7 +107,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$qa_skin_url.'/style.css">', 0);
              ?>
                 <li>
                     <i class="fa fa-download" aria-hidden="true"></i>
-                    <a href="<?php echo $view['download_href'][$i];  ?>" class="view_file_download" download>
+                    <a href="<?php echo $view['download_href'][$i];  ?>" class="view_file_download">
                         <strong><?php echo $view['download_source'][$i] ?></strong>
                     </a>
                 </li>
@@ -163,7 +163,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$qa_skin_url.'/style.css">', 0);
                     </a>
                 </td>
                 <td class="td_date"><?php echo $rel_list[$i]['date']; ?></td>
-                <td class="td_stat"><span class="<?php echo ($rel_list[$i]['qa_status'] ? 'txt_done' : 'txt_rdy'); ?>"><?php echo ($rel_list[$i]['qa_status'] ? '<i class="fa fa-check-circle" aria-hidden="true"></i> 답변완료' : '<i class="fa fa-times-circle" aria-hidden="true"></i> 답변대기'); ?></span></td>
+                <td class="td_stat"><span class="<?php echo ($list[$i]['qa_status'] ? 'txt_done' : 'txt_rdy'); ?>"><?php echo ($rel_list[$i]['qa_status'] ? '<i class="fa fa-check-circle" aria-hidden="true"></i> 답변완료' : '<i class="fa fa-times-circle" aria-hidden="true"></i> 답변대기'); ?></span></td>
             </tr>
             <?php
             }

@@ -3,17 +3,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
 add_javascript('<script src="'.G5_JS_URL.'/owlcarousel/owl.carousel.min.js"></script>', 10);
+add_javascript('<script src="'.$latest_skin_url.'/latest.carousel.js"></script>', 11);
 add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/owlcarousel/owl.carousel.min.css">', 10);
 
-add_javascript('<script src="'.G5_JS_URL.'/tooltipster/tooltipster.bundle.min.js"></script>', 11);
-add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/tooltipster/tooltipster.bundle.min.css">', 11);
-add_javascript('<script src="'.$latest_skin_url.'/latest.carousel.js?v2"></script>', 12);
-
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.$latest_skin_url.'/style.css?v2">', 1);
+add_stylesheet('<link rel="stylesheet" href="'.$latest_skin_url.'/style.css">', 0);
 $thumb_width = 138;
 $thumb_height = 80;
-$list_count = (is_array($list) && $list) ? count($list) : 0;
+$list_count = count($list);
 $divisor_count = 4;
 $start_page_num = $list_count ? '1' : '0';
 $is_show_next_prev = ($list_count > 4) ? 1 : 0;
@@ -57,7 +54,7 @@ $is_show_next_prev = ($list_count > 4) ? 1 : 0;
                 if ($list[$i]['icon_hot']) echo " <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>";
                 
                 if ($list[$i]['comment_cnt'])  echo "
-                <span class=\"lt_cmt\"><span class=\"sound_only\">댓글</span>".$list[$i]['comment_cnt']."</span>";
+                <span class=\"lt_cmt\"><i class=\"fa fa-commenting-o\"></i> <span class=\"sound_only\">댓글</span>".$list[$i]['comment_cnt']."</span>";
                 echo "</a>";
                 ?>
                
@@ -81,5 +78,4 @@ $is_show_next_prev = ($list_count > 4) ? 1 : 0;
 		<button class="lt_page_next"><span class="sound_only">다음페이지</span><i class="fa fa-caret-right" aria-hidden="true"></i></button>
 	</div>
     <?php } ?>
-    <a href="<?php echo get_pretty_url($bo_table); ?>" class="lt_more"><span class="sound_only"><?php echo $bo_subject ?></span>전체보기</a>
 </div>

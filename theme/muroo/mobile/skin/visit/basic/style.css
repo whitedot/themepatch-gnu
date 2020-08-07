@@ -1,11 +1,21 @@
 @charset "utf-8";
 
-#visit {position:relative;margin:15px 10px;background:#fff;border:1px solid #dde7e9}
-#visit h2 {line-height:24px;font-size:1.2em;margin:0 0 10px;padding:15px;border-bottom:1px solid #dde7e9}
-#visit dl{background:#fff;padding:15px 20px;border-radius:3px;line-height:20px}
-#visit dl:after {display:block;visibility:hidden;clear:both;content:""}
-#visit dt {float:left;width:50%;position:relative;line-height:32px;padding-left:15px}
-#visit dt:after {position:absolute;left:0;top:13px;width:5px;height:5px;background:#3a8afd;content:"";border-radius:5px}
-#visit dd {float:left;width:50%;text-align:right;line-height:32px;color:#3a8afd}
-#visit a {display:inline-block;padding:10px 3px;text-decoration:none}
-#visit .btn_admin {position:absolute;top:0;right:15px}
+#visit {display:flex}
+#visit:after {display:block;visibility:hidden;clear:both;content:""}
+#visit h2 {position:absolute;font-size:0;text-indent:-9999em;line-height:0;overflow:hidden}
+#visit ul {display:inline-block;padding:0 20px}
+#visit ul:after {display:block;visibility:hidden;clear:both;content:""}
+#visit li {display:inline-block;float:left;font-size:1.083em;padding:19.5px 15px;font-weight:normal;color:#c3c7d0}
+#visit li span {margin-left:10px;color:#fff}
+
+@media (max-width:1300px){
+	#visit ul {padding:0 10px 0 0}
+	#visit li {padding:19px 10px}
+}
+
+@media (max-width:1200px){
+	#visit {background:#5c6982;position:relative}
+	#visit ul {padding:10px 0;width:100%}
+	#visit li {width:50%;text-align:left;padding:10px 25px}
+	#visit li.visit_admin {position:absolute;right:8px;top:-51px;width:42px;height:40px;padding:10px;border:0;margin-left:0;text-align:center}
+}

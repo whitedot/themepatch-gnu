@@ -15,33 +15,36 @@ echo '<div id="faq_hhtml">'.conv_content($fm['fm_mobile_head_html'], 1).'</div>'
 if( count($faq_master_list) ){
 ?>
 
-<div id="faq_sch">
-    <form name="faq_search_form" method="get">
-    <input type="hidden" name="fm_id" value="<?php echo $fm_id;?>">
-    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx;?>" required id="stx" class="frm_input" size="15" maxlength="15">
-    <button type="submit" value="검색" class="btn_submit"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
-    </form>
+<div class="faq_inner">
+	<div id="faq_sch">
+		<legend>FAQ 검색</legend>
+	    <form name="faq_search_form" method="get" class="faq_sch_frm">
+	    <input type="hidden" name="fm_id" value="<?php echo $fm_id;?>">
+	    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+	    <input type="text" name="stx" value="<?php echo $stx;?>" required id="stx" class="frm_input" size="15" maxlength="15">
+	    <button type="submit" value="검색" class="btn_submit"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
+	    </form>
+	</div>
+	
+	<nav id="bo_cate">
+	    <h2>자주하시는질문 분류</h2>
+	    <ul id="bo_cate_ul">
+	        <?php
+	        foreach( $faq_master_list as $v ){
+	            $category_msg = '';
+	            $category_option = '';
+	            if($v['fm_id'] == $fm_id){ // 현재 선택된 카테고리라면
+	                $category_option = ' id="bo_cate_on"';
+	                $category_msg = '<span class="sound_only">열린 분류 </span>';
+	            }
+	        ?>
+	        <li><a href="<?php echo $category_href;?>?fm_id=<?php echo $v['fm_id']?>" <?php echo $category_option;?> ><?php echo $category_msg.$v['fm_subject'];?></a></li>
+	        <?php
+	        }
+	        ?>
+	    </ul>
+	</nav>
 </div>
-
-<nav id="bo_cate">
-    <h2>자주하시는질문 분류</h2>
-    <ul id="bo_cate_ul">
-        <?php
-        foreach( $faq_master_list as $v ){
-            $category_msg = '';
-            $category_option = '';
-            if($v['fm_id'] == $fm_id){ // 현재 선택된 카테고리라면
-                $category_option = ' id="bo_cate_on"';
-                $category_msg = '<span class="sound_only">열린 분류 </span>';
-            }
-        ?>
-        <li><a href="<?php echo $category_href;?>?fm_id=<?php echo $v['fm_id']?>" <?php echo $category_option;?> ><?php echo $category_msg.$v['fm_subject'];?></a></li>
-        <?php
-        }
-        ?>
-    </ul>
-</nav>
 <?php } ?>
 
 <div id="faq_wrap" class="faq_<?php echo $fm_id; ?>">
@@ -57,14 +60,10 @@ if( count($faq_master_list) ){
                     continue;
             ?>
             <li>
-                <h3>
-                	<span class="tit_bg">Q</span><a href="#none" onclick="return faq_open(this);"><?php echo conv_content($v['fa_subject'], 1); ?></a>
-                	<button class="tit_btn" onclick="return faq_open(this);"><i class="fa fa-plus" aria-hidden="true"></i><span class="sound_only">열기</span></button>
-                </h3>
-                <div class="con_inner">
-                    <?php echo conv_content($v['fa_content'], 1); ?>
-                    <button type="button" class="closer_btn"><i class="fa fa-minus" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
-                </div>
+                <h3><button onclick="return faq_open(this);"><?php echo conv_content($v['fa_subject'], 1); ?></button></h3>
+            	<div class="con_inner pv_ji_close">
+            		<?php echo conv_content($v['fa_content'], 1); ?>		
+            	</div>
             </li>
             <?php
             }
@@ -98,27 +97,21 @@ echo '<div id="faq_thtml">'.conv_content($fm['fm_mobile_tail_html'], 1).'</div>'
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 <script>
-jQuery(function() {
+$(function() {
     $(".closer_btn").on("click", function() {
-        $(this).closest(".con_inner").slideToggle('slow', function() {
-			var $h3 = $(this).closest("li").find("h3");
-
-			$("#faq_con li h3").removeClass("faq_li_open");
-			if($(this).is(":visible")) {
-				$h3.addClass("faq_li_open");
-			}
-		});
+        $(this).closest(".con_inner").slideToggle();
     });
 });
 
 function faq_open(el)
 {	
-    var $con = $(el).closest("li").find(".con_inner"),
-		$h3 = $(el).closest("li").find("h3");
+	$("h3").on("click", function() {
+        $(this).addClass("faq_li_open");
+    });
+    var $con = $(el).closest("li").find(".con_inner");
 
     if($con.is(":visible")) {
         $con.slideUp();
-		$h3.removeClass("faq_li_open");
     } else {
         $("#faq_con .con_inner:visible").css("display", "none");
 
@@ -126,13 +119,20 @@ function faq_open(el)
             function() {
                 // 이미지 리사이즈
                 $con.viewimageresize2();
-				$("#faq_con li h3").removeClass("faq_li_open");
-
-				$h3.addClass("faq_li_open");
             }
         );
     }
 
     return false;
 }
+
+$(function(){
+    $('button').toggle(function(){
+        $(this).addClass('pv_ji_cl');
+        $(this).next('div.pvji_open').removeClass('pv_ji_close');
+    },function(){
+        $(this).removeClass('pv_ji_cl');
+        $(this).next('div.pvji_open').addClass('pv_ji_close');
+    });
+});
 </script>

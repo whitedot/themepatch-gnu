@@ -1,20 +1,23 @@
 @charset "utf-8";
 
-/* 최근게시물 스킨 (new) */
-#new_sch {background:#fff;text-align:center;margin:10px 0;border-bottom:1px solid #ddd}
-#new_sch legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
-#new_sch form {padding:15px}
-#new_sch select {float:left;border:1px solid #d0d3db;width:49.5%;height:45px;padding:0 5px;border-radius:0}
-#new_sch select#gr_id {margin-right:1%}
-#new_sch .ipt_sch {clear:both;position:relative;padding-top:10px}
-#new_sch .frm_input {border:1px solid #d0d3db;width:100%;height:45px;border-radius:0}
-#new_sch .sch_wr {position:relative;display:inline-block}
-#new_sch .btn_submit {position:absolute;top:10px;right:0;padding:0 10px;height:45px;width:45px;font-size:1.4em;font-weight:bold;color:#434a54;background:transparent}
-#new_sch p {padding:12px 0;font-size:0.95em;text-align:center;background:#f9fbfc;color:#3a8afd;letter-spacing:-0.1em}
+/* 새글 */
+#new_sch {padding:15px;text-align:center;background:#fff;border:1px solid #e4e5e7}
+#new_sch select {width:26%;float:left;height:40px;margin-bottom:5px;border:1px solid #e4e5e7;background:transparent;border-radius:3px}
+#new_sch #gr_id {margin-right:1%}
+#new_sch #view {border-left:1px solid #e2e2e2}
+#new_sch .sch_ipt {float:left;position:relative;width:45%;height:40px;margin-left:1%}
+#new_sch .frm_input {width:100%;margin-bottom:10px;border:1px solid #fff;border-radius:3px;background:transparent;border:2px solid #2aba8a}
+#new_sch .btn_sch_submit {position:absolute;right:2px;top:2px;height:36px;line-height:0;padding:0 10px;font-size:1.5em;background:transparent;color:#2aba8a;border:0;cursor:pointer}
 
-.new_list li {padding:15px;background:#fff;border-bottom:1px solid #e8eaee}
-.new_list .new_tit {display:block;line-height:24px;margin:5px 0;font-weight:bold;font-size:1.2em}
-.new_list .profile_img img {border-radius:50%}
-.new_list .new_info {color:#646464;font-weight:normal}
-.new_list .new_date {margin-left:5px}
-.new_list .new_board {background:#eeeaf8;color:#ac92ec;padding:3px 4px;border-radius:5px;font-weight:normal}
+#new_list {border:1px solid #e4e5e7;border-top:0}
+#new_list li {border-bottom:1px solid #f0f0f0;padding:10px}
+#new_list li:last-child {border-bottom:0}
+#new_list .new_tit {display:block;font-weight:bold;margin:5px 0;font-size:1.083em}
+#new_list .new_group {font-weight:bold;line-height:16px;color:#17bb9c}
+#new_list .new_board {font-weight:bold;line-height:16px;color:#8e74ef}
+
+.newli_info {margin-top:5px}
+.newli_info span, .newli_info a {color:#848484}
+.new_guest img {border-radius:50%}
+.new_date, .new_view {padding-left:5px}
+.new_cmt {float:right;color:#3598dc !important}

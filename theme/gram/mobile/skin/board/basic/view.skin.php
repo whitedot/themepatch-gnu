@@ -84,7 +84,10 @@ jQuery(function($){
             echo "<div id=\"bo_v_img\">\n";
 
             for ($i=0; $i<=count($view['file']); $i++) {
-                echo get_file_thumbnail($view['file'][$i]);
+                if ($view['file'][$i]['view']) {
+                    //echo $view['file'][$i]['view'];
+                    echo get_view_thumbnail($view['file'][$i]['view']);
+                }
             }
             echo "</div>\n";
 		}
@@ -143,7 +146,7 @@ jQuery(function($){
             if (isset($view['file'][$i]['source']) && $view['file'][$i]['source'] && !$view['file'][$i]['view']) {
          ?>
             <li>
-                <a href="<?php echo $view['file'][$i]['href'];  ?>" class="view_file_download" download>
+                <a href="<?php echo $view['file'][$i]['href'];  ?>" class="view_file_download">
                     <i class="fa fa-download" aria-hidden="true"></i>
                     <strong><?php echo $view['file'][$i]['source'] ?></strong>
                     <?php echo $view['file'][$i]['content'] ?> (<?php echo $view['file'][$i]['size'] ?>)

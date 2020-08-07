@@ -76,6 +76,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 			<input type="text" name="wr_email" value="<?php echo $email ?>" id="wr_email" class="frm_input half_input email " placeholder="이메일">
 	    <?php } ?>
 	    
+	
 	    <?php if ($is_homepage) { ?>
 	        <label for="wr_homepage" class="sound_only">홈페이지</label>
 	        <input type="text" name="wr_homepage" value="<?php echo $homepage ?>" id="wr_homepage" class="frm_input half_input" size="50" placeholder="홈페이지">
@@ -107,6 +108,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             </div>
             <?php } ?>
         </div>
+        
     </div>
 
     <div class="write_div">
@@ -128,7 +130,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <?php for ($i=1; $is_link && $i<=G5_LINK_COUNT; $i++) { ?>
     <div class="bo_w_link write_div">
         <label for="wr_link<?php echo $i ?>"><i class="fa fa-link" aria-hidden="true"></i><span class="sound_only"> 링크  #<?php echo $i ?></span></label>
-        <input type="text" name="wr_link<?php echo $i ?>" value="<?php if($w=="u"){ echo $write['wr_link'.$i]; } ?>" id="wr_link<?php echo $i ?>" class="frm_input full_input" size="50">
+        <input type="text" name="wr_link<?php echo $i ?>" value="<?php if($w=="u"){echo$write['wr_link'.$i];} ?>" id="wr_link<?php echo $i ?>" class="frm_input full_input" size="50">
     </div>
     <?php } ?>
 
@@ -159,7 +161,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <?php } ?>
 
     <div class="btn_confirm write_div">
-        <a href="<?php echo get_pretty_url($bo_table); ?>" class="btn_cancel btn">취소</a>
+        <a href="<?php echo get_pretty_url($bo_table); ?>" class="btn_b01 btn">취소</a>
         <button type="submit" id="btn_submit" accesskey="s" class="btn_submit btn">작성완료</button>
     </div>
     </form>

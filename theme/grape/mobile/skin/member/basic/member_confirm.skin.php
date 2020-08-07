@@ -25,7 +25,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         회원아이디
         <span id="mb_confirm_id"><?php echo $member['mb_id'] ?></span>
         <input type="password" name="mb_password" id="mb_confirm_pw" placeholder="비밀번호(필수)" required class="frm_input" size="15" maxLength="20">
-        <input type="submit" value="확인" id="btn_submit" class="btn_submit">
+        <input type="submit" value="확인" id="btn_submit" class="btn_l btn_submit">
     </fieldset>
 
     </form>

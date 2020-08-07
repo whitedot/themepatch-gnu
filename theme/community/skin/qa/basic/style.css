@@ -117,12 +117,9 @@
 #bo_cate ul {zoom:1}
 #bo_cate ul:after {display:block;visibility:hidden;clear:both;content:""}
 #bo_cate li {display:inline-block;padding:2px}
-#bo_cate a {display:block;line-height:28px;padding:5px 15px;border-radius:30px;border:1px solid #d6e9ff;color:#6794d3}
-#bo_cate a:focus, #bo_cate a:hover, #bo_cate a:active {text-decoration:none;background:#3a8afd;color:#fff}
-#bo_cate #bo_cate_on {z-index:2;background:#3a8afd;color:#fff;font-weight:bold;border:1px solid #3a8afd;
--webkit-box-shadow:inset 0 2px 5px rgb(33, 135, 202);
--moz-box-shadow:inset 0 2px 5px rgb(33, 135, 202);
-box-shadow:inset 0 2px 5px rgb(33, 135, 202)}
+#bo_cate a {display:block;line-height:28px;padding:5px 15px;border-radius:30px;border:1px solid #2c68b0;color:#2c68b0}
+#bo_cate a:focus, #bo_cate a:hover, #bo_cate a:active {text-decoration:none;background:#2c68b0;color:#fff}
+#bo_cate #bo_cate_on {z-index:2;background:#2c68b0;color:#fff;font-weight:bold;border:1px solid #2c68b0}
 .td_subject img {margin-left:5px}
 
 
@@ -376,7 +373,7 @@ html.no-overflowscrolling #autosave_pop {height:auto;max-height:10000px !importa
 #bo_w .bo_w_mail {float:left;width:49.5%}
 #bo_w .bo_w_hp {float:right;width:49.5%}
 #bo_w .bo_w_sbj {clear:both}
-#bo_w .frm_info {position:relative;line-height:18px;color:#3497d9;margin:10px 0;display:inline-block;font-size:1em}
+#bo_w .frm_info {position:relative;padding-left:25px;line-height:18px;color:#3497d9;margin:10px 0;display:inline-block;font-size:1em}
 
 .selec_chk {position:absolute;top:0;left:0;width:0;height:0;opacity:0;outline:0;z-index:-1;overflow:hidden}
 .chk_box {position:relative}

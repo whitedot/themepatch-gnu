@@ -8,14 +8,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 <div id="point" class="new_win">
     <h1 id="win_title"><?php echo $g5['title'] ?></h1>
     
-    <div class="new_win_con2">
-        <ul class="point_all">
-        	<li class="full_li">
-        		보유포인트
-        		<span><?php echo number_format($member['mb_point']); ?></span>
-        	</li>
-		</ul>
-        <ul class="point_list">
+    <div class="new_win_con">
+    	<p class="point_all">
+        	<span class="point_all_tit">보유포인트</span>
+        	<span class="point_all_cnt"><i class="fas fa-coins"></i> <?php echo number_format($member['mb_point']); ?></span>
+		</p>
+        <ul id="point_ul">
             <?php
             $sum_point1 = $sum_point2 = $sum_point3 = 0;
 
@@ -43,16 +41,18 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
                     $expr = ' txt_expired';
             ?>
             <li class="<?php echo $point_use_class; ?>">
-                <div class="point_top">
-                    <span class="point_tit"><?php echo $po_content; ?></span>
-                    <span class="point_num"><?php if ($point1) echo $point1; else echo $point2; ?></span>
+            	<div class="point_cnt">
+					<span class="point_num<?php echo $point_class ?>"><?php if ($point1) echo $point1; else echo $point2; ?></span>
+                	<span class="point_log"><?php echo $po_content; ?></span>
+				</div>
+                <div class="point_date">
+                	<i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo conv_date_format('y-m-d H시', $row['po_datetime']); ?>
+                	<span class="point_expdate<?php echo $expr; ?>">
+	                    <?php if ($row['po_expired'] == 1) { ?>
+	                    만료 <?php echo substr(str_replace('-', '', $row['po_expire_date']), 2); ?>
+	                    <?php } else echo $row['po_expire_date'] == '9999-12-31' ? '&nbsp;' : $row['po_expire_date']; ?>
+	                </span>
                 </div>
-                <span class="point_date1"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo conv_date_format('y-m-d H시', $row['po_datetime']); ?></span>
-                <span class="point_date<?php echo $expr; ?>">
-                    <?php if ($row['po_expired'] == 1) { ?>
-                    만료 <?php echo substr(str_replace('-', '', $row['po_expire_date']), 2); ?>
-                    <?php } else echo $row['po_expire_date'] == '9999-12-31' ? '&nbsp;' : $row['po_expire_date']; ?>
-                </span>
             </li>
             <?php
             }
@@ -65,16 +65,17 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
                 $sum_point2 = number_format($sum_point2);
             }
             ?>
-
-            <li class="point_status">
-                소계
-                <span><?php echo $sum_point1; ?></span>
-                <span><?php echo $sum_point2; ?></span>
-            </li>
         </ul>
 
-        <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$qstr.'&amp;page='); ?>
+        <div class="point_status">
+            <p class="point_status_add"><span>지급포인트</span><b class="sum_val"><?php echo $sum_point1; ?></b></p>
+            <p class="point_status_sbt"><span>사용포인트</span><b class="sum_val"><?php echo $sum_point2; ?></b></p>
+        </div>
 
-        <button type="button" onclick="javascript:window.close();" class="btn_close">창닫기</button>
+    	<?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$qstr.'&amp;page='); ?>
+
+    	<div class="win_btn">
+        	<button type="button" onclick="javascript:window.close();" class="btn_close">닫기</button>
+        </div>
     </div>
 </div>

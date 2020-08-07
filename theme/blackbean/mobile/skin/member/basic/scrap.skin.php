@@ -5,7 +5,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
 ?>
 
-<div id="scrap" class="new_win">
+<div id="scrap" class="new_win2">
     <h1 id="win_title"><?php echo $g5['title'] ?></h1>
 
     <ul id="scrap_ul" class="list_01">

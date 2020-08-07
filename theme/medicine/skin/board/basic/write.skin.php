@@ -24,36 +24,40 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <?php
     $option = '';
     $option_hidden = '';
-    if ($is_notice || $is_html || $is_secret || $is_mail) { 
+    if ($is_notice || $is_html || $is_secret || $is_mail) {
         $option = '';
         if ($is_notice) {
-            $option .= PHP_EOL.'<li class="chk_box"><input type="checkbox" id="notice" name="notice"  class="selec_chk" value="1" '.$notice_checked.'>'.PHP_EOL.'<label for="notice"><span></span>공지</label></li>';
+            $option .= "\n".'<input type="checkbox" id="notice" name="notice" value="1" '.$notice_checked.'>'."\n".'<label for="notice">공지</label>';
         }
+
         if ($is_html) {
             if ($is_dhtml_editor) {
                 $option_hidden .= '<input type="hidden" value="html1" name="html">';
             } else {
-                $option .= PHP_EOL.'<li class="chk_box"><input type="checkbox" id="html" name="html" onclick="html_auto_br(this);" class="selec_chk" value="'.$html_value.'" '.$html_checked.'>'.PHP_EOL.'<label for="html"><span></span>html</label></li>';
+                $option .= "\n".'<input type="checkbox" id="html" name="html" onclick="html_auto_br(this);" value="'.$html_value.'" '.$html_checked.'>'."\n".'<label for="html">HTML</label>';
             }
         }
+
         if ($is_secret) {
             if ($is_admin || $is_secret==1) {
-                $option .= PHP_EOL.'<li class="chk_box"><input type="checkbox" id="secret" name="secret"  class="selec_chk" value="secret" '.$secret_checked.'>'.PHP_EOL.'<label for="secret"><span></span>비밀글</label></li>';
+                $option .= "\n".'<input type="checkbox" id="secret" name="secret" value="secret" '.$secret_checked.'>'."\n".'<label for="secret">비밀글</label>';
             } else {
                 $option_hidden .= '<input type="hidden" name="secret" value="secret">';
             }
         }
+
         if ($is_mail) {
-            $option .= PHP_EOL.'<li class="chk_box"><input type="checkbox" id="mail" name="mail"  class="selec_chk" value="mail" '.$recv_email_checked.'>'.PHP_EOL.'<label for="mail"><span></span>답변메일받기</label></li>';
+            $option .= "\n".'<input type="checkbox" id="mail" name="mail" value="mail" '.$recv_email_checked.'>'."\n".'<label for="mail">답변메일받기</label>';
         }
     }
+
     echo $option_hidden;
     ?>
 
     <?php if ($is_category) { ?>
     <div class="bo_w_select write_div">
         <label for="ca_name" class="sound_only">분류<strong>필수</strong></label>
-        <select name="ca_name" id="ca_name" required>
+        <select name="ca_name" id="ca_name" required class="frm_input">
             <option value="">분류를 선택하세요</option>
             <?php echo $category_option ?>
         </select>
@@ -63,32 +67,31 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <div class="bo_w_info write_div">
 	    <?php if ($is_name) { ?>
 	        <label for="wr_name" class="sound_only">이름<strong>필수</strong></label>
-	        <input type="text" name="wr_name" value="<?php echo $name ?>" id="wr_name" required class="frm_input half_input required" placeholder="이름">
+	        <input type="text" name="wr_name" value="<?php echo $name ?>" id="wr_name" required class="frm_input required" placeholder="이름">
 	    <?php } ?>
 	
 	    <?php if ($is_password) { ?>
 	        <label for="wr_password" class="sound_only">비밀번호<strong>필수</strong></label>
-	        <input type="password" name="wr_password" id="wr_password" <?php echo $password_required ?> class="frm_input half_input <?php echo $password_required ?>" placeholder="비밀번호">
+	        <input type="password" name="wr_password" id="wr_password" <?php echo $password_required ?> class="frm_input <?php echo $password_required ?>" placeholder="비밀번호">
 	    <?php } ?>
 	
 	    <?php if ($is_email) { ?>
 			<label for="wr_email" class="sound_only">이메일</label>
-			<input type="text" name="wr_email" value="<?php echo $email ?>" id="wr_email" class="frm_input half_input email " placeholder="이메일">
+			<input type="text" name="wr_email" value="<?php echo $email ?>" id="wr_email" class="frm_input email " placeholder="이메일">
 	    <?php } ?>
-	    
+	</div>   
 	
-	    <?php if ($is_homepage) { ?>
-	        <label for="wr_homepage" class="sound_only">홈페이지</label>
-	        <input type="text" name="wr_homepage" value="<?php echo $homepage ?>" id="wr_homepage" class="frm_input half_input" size="50" placeholder="홈페이지">
-	    <?php } ?>
-	</div>
+    <?php if ($is_homepage) { ?>
+    <div class="write_div">
+        <label for="wr_homepage" class="sound_only">홈페이지</label>
+        <input type="text" name="wr_homepage" value="<?php echo $homepage ?>" id="wr_homepage" class="frm_input full_input" size="50" placeholder="홈페이지">
+    </div>
+    <?php } ?>
 	
     <?php if ($option) { ?>
     <div class="write_div">
         <span class="sound_only">옵션</span>
-        <ul class="bo_v_option">
         <?php echo $option ?>
-        </ul>
     </div>
     <?php } ?>
 
@@ -130,7 +133,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <?php for ($i=1; $is_link && $i<=G5_LINK_COUNT; $i++) { ?>
     <div class="bo_w_link write_div">
         <label for="wr_link<?php echo $i ?>"><i class="fa fa-link" aria-hidden="true"></i><span class="sound_only"> 링크  #<?php echo $i ?></span></label>
-        <input type="text" name="wr_link<?php echo $i ?>" value="<?php if($w=="u"){ echo $write['wr_link'.$i]; } ?>" id="wr_link<?php echo $i ?>" class="frm_input full_input" size="50">
+        <input type="text" name="wr_link<?php echo $i ?>" value="<?php if($w=="u"){echo$write['wr_link'.$i];} ?>" id="wr_link<?php echo $i ?>" class="frm_input full_input" size="50">
     </div>
     <?php } ?>
 
@@ -138,7 +141,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <div class="bo_w_flie write_div">
         <div class="file_wr write_div">
             <label for="bf_file_<?php echo $i+1 ?>" class="lb_icon"><i class="fa fa-folder-open" aria-hidden="true"></i><span class="sound_only"> 파일 #<?php echo $i+1 ?></span></label>
-            <input type="file" name="bf_file[]" id="bf_file_<?php echo $i+1 ?>" title="파일첨부 <?php echo $i+1 ?> : 용량 <?php echo $upload_max_filesize ?> 이하만 업로드 가능" class="frm_file ">
+            <input type="file" name="bf_file[]" id="bf_file_<?php echo $i+1 ?>" title="파일첨부 <?php echo $i+1 ?> : 용량 <?php echo $upload_max_filesize ?> 이하만 업로드 가능" class="frm_file">
         </div>
         <?php if ($is_file_content) { ?>
         <input type="text" name="bf_content[]" value="<?php echo ($w == 'u') ? $file[$i]['bf_content'] : ''; ?>" title="파일 설명을 입력해주세요." class="full_input frm_input" size="50" placeholder="파일 설명을 입력해주세요.">

@@ -45,6 +45,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php echo $page ?> 페이지
         </div>
 
+        <?php if ($rss_href || $write_href) { ?>
         <ul class="btn_bo_user">
         	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
             <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
@@ -65,6 +66,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         	</li>
         	<?php }  ?>
         </ul>
+        <?php } ?>
     </div>
     <!-- } 게시판 페이지 정보 및 버튼 끝 -->
         	
@@ -133,11 +135,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                         <?php echo $list[$i]['subject'] ?>
                     </a>
                     <?php
+                    if ($list[$i]['icon_hot']) echo "<span class=\"hot_icon\"><i class=\"fa fa-heart\" aria-hidden=\"true\"></i><span class=\"sound_only\">인기글</span></span>";
                     if ($list[$i]['icon_new']) echo "<span class=\"new_icon\">N<span class=\"sound_only\">새글</span></span>";
                     // if ($list[$i]['file']['count']) { echo '<'.$list[$i]['file']['count'].'>'; }
-                    if (isset($list[$i]['icon_hot'])) echo rtrim($list[$i]['icon_hot']);
-                    if (isset($list[$i]['icon_file'])) echo rtrim($list[$i]['icon_file']);
-                    if (isset($list[$i]['icon_link'])) echo rtrim($list[$i]['icon_link']);
+                    if ($list[$i]['icon_file']) echo " <span class=\"download_icon\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i><span class=\"sound_only\">첨부파일</span></span>" ;
+	            	if ($list[$i]['icon_link']) echo " <span class=\"link_icon\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i><span class=\"sound_only\">링크첨부</span></span>" ;
                     ?>
                     <?php if ($list[$i]['comment_cnt']) { ?><span class="sound_only">댓글</span><span class="cnt_cmt"><?php echo $list[$i]['wr_comment']; ?></span><span class="sound_only">개</span><?php } ?>
                 </div>
@@ -147,7 +149,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php if ($is_good) { ?><td class="td_num"><?php echo $list[$i]['wr_good'] ?></td><?php } ?>
             <?php if ($is_nogood) { ?><td class="td_num"><?php echo $list[$i]['wr_nogood'] ?></td><?php } ?>
             <td class="td_datetime"><?php echo $list[$i]['datetime2'] ?></td>
-
         </tr>
         <?php } ?>
         <?php if (count($list) == 0) { echo '<tr><td colspan="'.$colspan.'" class="empty_table">게시물이 없습니다.</td></tr>'; } ?>

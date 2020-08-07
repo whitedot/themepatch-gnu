@@ -20,135 +20,189 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <?php
     $option = '';
     $option_hidden = '';
-    if ($is_notice || $is_html || $is_secret || $is_mail) { 
+    if ($is_notice || $is_html || $is_secret || $is_mail) {
         $option = '';
         if ($is_notice) {
-            $option .= PHP_EOL.'<li class="chk_box"><input type="checkbox" id="notice" name="notice"  class="selec_chk" value="1" '.$notice_checked.'>'.PHP_EOL.'<label for="notice"><span></span>공지</label></li>';
+            $option .= PHP_EOL.'<input type="checkbox" id="notice" name="notice" value="1" '.$notice_checked.'>'.PHP_EOL.'<label for="notice" class="notice_ck">공지</label>';
         }
+
         if ($is_html) {
             if ($is_dhtml_editor) {
                 $option_hidden .= '<input type="hidden" value="html1" name="html">';
             } else {
-                $option .= PHP_EOL.'<li class="chk_box"><input type="checkbox" id="html" name="html" onclick="html_auto_br(this);" class="selec_chk" value="'.$html_value.'" '.$html_checked.'>'.PHP_EOL.'<label for="html"><span></span>html</label></li>';
+                $option .= PHP_EOL.'<input type="checkbox" id="html" name="html" onclick="html_auto_br(this);" value="'.$html_value.'" '.$html_checked.'>'.PHP_EOL.'<label for="html">html</label>';
             }
         }
+
         if ($is_secret) {
             if ($is_admin || $is_secret==1) {
-                $option .= PHP_EOL.'<li class="chk_box"><input type="checkbox" id="secret" name="secret"  class="selec_chk" value="secret" '.$secret_checked.'>'.PHP_EOL.'<label for="secret"><span></span>비밀글</label></li>';
+                $option .= PHP_EOL.'<input type="checkbox" id="secret" name="secret" value="secret" '.$secret_checked.'>'.PHP_EOL.'<label for="secret" class="secret_ck">비밀글</label>';
             } else {
                 $option_hidden .= '<input type="hidden" name="secret" value="secret">';
             }
         }
+
         if ($is_mail) {
-            $option .= PHP_EOL.'<li class="chk_box"><input type="checkbox" id="mail" name="mail"  class="selec_chk" value="mail" '.$recv_email_checked.'>'.PHP_EOL.'<label for="mail"><span></span>답변메일받기</label></li>';
+            $option .= PHP_EOL.'<input type="checkbox" id="mail" name="mail" value="mail" '.$recv_email_checked.'>'.PHP_EOL.'<label for="mail">답변메일받기</label>';
         }
     }
+
     echo $option_hidden;
     ?>
 	
-    <div class="form_01 write_div">
+    <div class="form_inpt">
         <h2 class="sound_only"><?php echo $g5['title'] ?></h2>
+		
+		<ul class="bo_w_info">
+	        <?php if ($is_category) { ?>
+	        <li>
+		        <div class="wli_tit"><label for="ca_name">분류<strong class="sound_only">필수</strong></label></div>
+		        <div class="wli_cnt">
+			        <select id="ca_name" name="ca_name" required class="full_input">
+			            <option value="">선택하세요</option>
+			            <?php echo $category_option ?>
+			        </select>
+		        </div>
+		    </li>
+	        <?php } ?> 
+        	
+        	<?php if (!$is_member) {  ?>
+		    <li class="wli_left">
+		    	<div class="wli_tit">이름</div>
+		    	<?php if ($is_name) { ?>
+		    	<div class="wli_cnt">
+	            	<label for="wr_name" class="sound_only">이름<strong>필수</strong></label>
+	            	<input type="text" name="wr_name" value="<?php echo $name ?>" id="wr_name" required class="frm_input full_input required" maxlength="20" placeholder="이름">
+	        	</div>
+	        	<?php } ?>	
+		    </li>
+		    
+		    <li class="wli_left">
+		    	<div class="wli_tit">비밀번호</div>
+			    <?php if ($is_password) { ?>
+			    	<div class="wli_cnt">
+	            		<label for="wr_password" class="sound_only">비밀번호<strong>필수</strong></label>
+	            		<input type="password" name="wr_password" id="wr_password" <?php echo $password_required ?> class="frm_input full_input <?php echo $password_required ?>" maxlength="20" placeholder="비밀번호">
+	        		</div>
+	        	<?php } ?>
+        	</li>
+        	
+        	<li class="wli_left">
+        		<div class="wli_tit">이메일</div>
+				<?php if ($is_email) { ?>
+				<div class="wli_cnt">	
+					<label for="wr_email" class="sound_only">이메일</label>
+					<input type="email" name="wr_email" value="<?php echo $email ?>" id="wr_email" class="frm_input full_input email" maxlength="100" placeholder="이메일">
+				</div>
+				<?php } ?>
+        	</li>
 
-        <?php if ($is_category) { ?>
-        <div class="bo_w_select write_div">
-            <label for="ca_name" class="sound_only">분류<strong>필수</strong></label>
-            <select id="ca_name" name="ca_name" required>
-                <option value="">선택하세요</option>
-                <?php echo $category_option ?>
-            </select>
-        </div>
-        <?php } ?> 
-        
-        <?php if ($is_name) { ?>
-        <div class="write_div">
-            <label for="wr_name" class="sound_only">이름<strong>필수</strong></label>
-            <input type="text" name="wr_name" value="<?php echo $name ?>" id="wr_name" required class="frm_input full_input required" maxlength="20" placeholder="이름">
-        </div>
-        <?php } ?>
+			<li class="wli_left">
+        		<?php if ($is_homepage) { ?>
+        		<div class="wli_tit">홈페이지</div>
+		        <div class="wli_cnt">
+		            <label for="wr_homepage" class="sound_only">홈페이지</label>
+		            <input type="text" name="wr_homepage" value="<?php echo $homepage ?>" id="wr_homepage" class="frm_input full_input" placeholder="홈페이지">
+		        </div>
+		        <?php } ?>	
+        	</li>
+		    <?php } ?>
+		    
+		    <li class="bo_w_tit">
+		    	<div class="wli_tit">제목</div>
+		    	<div class="wli_cnt">
+		    		<label for="wr_subject" class="sound_only">제목<strong>필수</strong></label>
+        			<input type="text" name="wr_subject" value="<?php echo $subject ?>" id="wr_subject" required class="frm_input required" placeholder="제목">
+		    	</div>
+		    </li>
 
-        <?php if ($is_password) { ?>
-        <div class="write_div">
-            <label for="wr_password" class="sound_only">비밀번호<strong>필수</strong></label>
-            <input type="password" name="wr_password" id="wr_password" <?php echo $password_required ?> class="frm_input full_input <?php echo $password_required ?>" maxlength="20" placeholder="비밀번호">
-        </div>
-        <?php } ?>
+			<li class="bo_w_option">
+		    	<?php if ($option) { ?>
+		    	<div class="wli_tit"><span class="sound_only">글쓰기 옵션</span></div>
+		        <div class="wli_cnt">
+		            <span class="sound_only">옵션</span>
+		            <?php echo $option ?>
+		        </div>
+		        <?php } ?>
+		        <script>
+				$(document).ready(function(){
+				    $("#notice").click(function(){
+				        $(".notice_ck").toggleClass("click_on");
+				    });
+				
+				    $("#mail").click(function(){
+				        $(".mail_ck").toggleClass("click_off");
+				    });
 
-        <?php if ($is_email) { ?>
-        <div class="write_div">
-            <label for="wr_email" class="sound_only">이메일</label>
-            <input type="email" name="wr_email" value="<?php echo $email ?>" id="wr_email" class="frm_input full_input" maxlength="100" placeholder="이메일">
-        </div>
-        <?php } ?>
+				    $("#secret").click(function(){
+				        $(".secret_ck").toggleClass("click_on");
+				    });
+				
+				    $("input[type='checkbox']").each(function(){
+				        var name = $(this).attr('name');
+				        if($(this).prop("checked")) {
+				            $(this).siblings("label[for='"+name+"']").addClass("click_on");
+				        }
+				    });
+				});
+		        </script>
+		    </li> 
+		    
+		    <li>
+	        	<div class="wli_tit"><span class="sound_only">내용</span></div>
+	        	<div class="wli_cnt">
+	            <label for="wr_content" class="sound_only">내용<strong>필수</strong></label>
+	            	<?php if($write_min || $write_max) { ?>
+		            <!-- 최소/최대 글자 수 사용 시 -->
+		            <p id="char_count_desc">이 게시판은 최소 <strong><?php echo $write_min; ?></strong>글자 이상, 최대 <strong><?php echo $write_max; ?></strong>글자 이하까지 글을 쓰실 수 있습니다.</p>
+		            <?php } ?>
+		            <?php echo $editor_html; // 에디터 사용시는 에디터로, 아니면 textarea 로 노출 ?>
+		            <?php if($write_min || $write_max) { ?>
+		            <!-- 최소/최대 글자 수 사용 시 -->
+		            <div id="char_count_wrap"><span id="char_count"></span>글자</div>
+	            </div>
+	            <?php } ?>
+	        </li>
 
-        <?php if ($is_homepage) { ?>
-        <div class="write_div">
-            <label for="wr_homepage" class="sound_only">홈페이지</label>
-            <input type="text" name="wr_homepage" value="<?php echo $homepage ?>" id="wr_homepage" class="frm_input full_input" placeholder="홈페이지">
-        </div>
-        <?php } ?>
-
-        <?php if ($option) { ?>
-        <div class="write_div">
-            <span class="sound_only">옵션</span>
-            <ul class="bo_v_option">
-            <?php echo $option ?>
-            </ul>
-        </div>
-        <?php } ?>
-
-        <div class="bo_w_tit write_div">
-            <label for="wr_subject" class="sound_only">제목<strong>필수</strong></label>
-            <input type="text" name="wr_subject" value="<?php echo $subject ?>" id="wr_subject" required class="frm_input full_input required" placeholder="제목">
-        </div>
-
-        <div class="write_div">
-            <label for="wr_content" class="sound_only">내용<strong>필수</strong></label>
-            <?php if($write_min || $write_max) { ?>
-            <!-- 최소/최대 글자 수 사용 시 -->
-            <p id="char_count_desc">이 게시판은 최소 <strong><?php echo $write_min; ?></strong>글자 이상, 최대 <strong><?php echo $write_max; ?></strong>글자 이하까지 글을 쓰실 수 있습니다.</p>
-            <?php } ?>
-            <?php echo $editor_html; // 에디터 사용시는 에디터로, 아니면 textarea 로 노출 ?>
-            <?php if($write_min || $write_max) { ?>
-            <!-- 최소/최대 글자 수 사용 시 -->
-            <div id="char_count_wrap"><span id="char_count"></span>글자</div>
-            <?php } ?>
-        </div>
-
-        <?php for ($i=1; $is_link && $i<=G5_LINK_COUNT; $i++) { ?>
-        <div class="bo_w_link write_div">
-            <label for="wr_link<?php echo $i ?>"><i class="fa fa-link" aria-hidden="true"></i> <span class="sound_only">링크 #<?php echo $i ?></span></label>
-            <input type="text" name="wr_link<?php echo $i ?>" value="<?php if($w=="u"){echo $write['wr_link'.$i];} ?>" id="wr_link<?php echo $i ?>" class="frm_input wr_link" placeholder="링크를 입력하세요">
-        </div>
-        <?php } ?>
-
-        <?php for ($i=0; $is_file && $i<$file_count; $i++) { ?>
-        <div class="bo_w_flie write_div">
-            <div class="file_wr write_div filebox">
-            	<input type="text" class="fileName" readonly="readonly" placeholder="파일을 첨부하세요">
-                <label for="bf_file_<?php echo $i+1 ?>"><i class="fa fa-download lb_icon" aria-hidden="true"></i><span class="sound_only">파일 #<?php echo $i+1 ?></span><span class="btn_file">파일첨부</span></label>
-                <input type="file" name="bf_file[]" id="bf_file_<?php echo $i+1 ?>" title="파일첨부 <?php echo $i+1 ?> : 용량 <?php echo $upload_max_filesize ?> 이하만 업로드 가능" class="frm_file uploadBtn">
-            </div>
-            <?php if ($is_file_content) { ?>
-            <input type="text" name="bf_content[]" value="<?php echo ($w == 'u') ? $file[$i]['bf_content'] : ''; ?>" title="파일 설명을 입력해주세요." class="full_input frm_input" size="50" placeholder="파일 설명을 입력해주세요.">
-            <?php } ?>
-
-            <?php if($w == 'u' && $file[$i]['file']) { ?>
-            <span class="file_del">
-                <input type="checkbox" id="bf_file_del<?php echo $i ?>" name="bf_file_del[<?php echo $i;  ?>]" value="1"> <label for="bf_file_del<?php echo $i ?>"><?php echo $file[$i]['source'].'('.$file[$i]['size'].')';  ?> 파일 삭제</label>
-            </span>
-            <?php } ?>
-        </div>
-        <?php } ?>
+			<?php for ($i=1; $is_link && $i<=G5_LINK_COUNT; $i++) { ?>
+	        <li class="bo_w_link">
+	        	<div class="wli_tit">링크</div>
+	        	<div class="wli_cnt">
+	            	<label for="wr_link<?php echo $i ?>"><span class="sound_only">링크 #<?php echo $i ?></span></label>
+	            	<input type="text" name="wr_link<?php echo $i ?>" value="<?php if($w=="u"){echo $write['wr_link'.$i];} ?>" id="wr_link<?php echo $i ?>" class="frm_input wr_link" placeholder="링크를 입력해주세요.">
+	        	</div>
+	        </li>
+	        <?php } ?>
+	        
+	        <?php for ($i=0; $is_file && $i<$file_count; $i++) { ?>
+	        <li class="bo_w_flie write_div">
+	        	<div class="wli_tit">파일첨부</div>
+	            <div class="file_wr wli_cnt">
+	                <label for="bf_file_<?php echo $i+1 ?>" class="lb_icon"><span class="sound_only">파일 #<?php echo $i+1 ?></span></label>
+	                <input type="file" name="bf_file[]" id="bf_file_<?php echo $i+1 ?>" title="파일첨부 <?php echo $i+1 ?> : 용량 <?php echo $upload_max_filesize ?> 이하만 업로드 가능" class="frm_file ">
+	            </div>
+	            <?php if ($is_file_content) { ?>
+	            <input type="text" name="bf_content[]" value="<?php echo ($w == 'u') ? $file[$i]['bf_content'] : ''; ?>" title="파일 설명을 입력해주세요." class="full_input frm_input" size="50" placeholder="파일 설명을 입력해주세요.">
+	            <?php } ?>
+	
+	            <?php if($w == 'u' && $file[$i]['file']) { ?>
+	            <span class="file_del">
+	                <input type="checkbox" id="bf_file_del<?php echo $i ?>" name="bf_file_del[<?php echo $i;  ?>]" value="1"> <label for="bf_file_del<?php echo $i ?>"><?php echo $file[$i]['source'].'('.$file[$i]['size'].')';  ?> 파일 삭제</label>
+	            </span>
+	            <?php } ?>
+	        </li>
+	        <?php } ?>
+	    </ul>
 
         <?php if ($is_use_captcha) { //자동등록방지 ?>
-        <div class="write_div">
+        <div class="wli_cnt wli_captcha">
             <span class="sound_only">자동등록방지</span>
             <?php echo $captcha_html ?>
         </div>
         <?php } ?>
     </div>
 
-    <div class="btn_confirm">
+    <div class="bo_w_btn">
         <a href="<?php echo get_pretty_url($bo_table); ?>" class="btn_cancel">취소</a>
         <button type="submit" id="btn_submit" class="btn_submit" accesskey="s">작성완료</button>
     </div>
@@ -239,14 +293,4 @@ function fwrite_submit(f)
 
     return true;
 }
-
-var uploadFile = $('.filebox .uploadBtn');
-uploadFile.on('change', function(){
-	if(window.FileReader){
-		var filename = $(this)[0].files[0].name;
-	} else {
-		var filename = $(this).val().split('/').pop().split('\\').pop();
-	}
-	$(this).siblings('.fileName').val(filename);
-});
 </script>

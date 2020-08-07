@@ -16,9 +16,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$poll_skin_url.'/style.css">', 0)
 <!-- 설문조사 결과 시작 { -->
 <div id="poll_result" class="new_win">
     <h1 id="win_title"><?php echo $g5['title'] ?></h1>
-    <div class="new_win_con2">
+    <span class="poll_all">전체 <?php echo $nf_total_po_cnt ?>표</span>
+    <div class="new_win_con">
+    	
         <!-- 설문조사 결과 그래프 시작 { -->
-        <span class="poll_all">전체 <?php echo $nf_total_po_cnt ?>표</span>
         <section id="poll_result_list">
             <h2><?php echo $po_subject ?> 결과</h2>
             <ol>
@@ -28,13 +29,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$poll_skin_url.'/style.css">', 0)
                     $poll_1st_class = ($get_max_cnt && ((int) $list[$i]['cnt'] === (int) $get_max_cnt)) ? 'poll_1st' : '';
                 ?>
                 <li class="<?php echo $poll_1st_class; ?>">
-                    <span><?php echo $list[$i]['content'] ?></span>   
+                    <span><?php echo $list[$i]['content'] ?></span>
+                    <span class="poll_percent"><?php echo number_format($list[$i]['rate'], 1) ?> %</span>
                     <div class="poll_result_graph">
-                        <span style="width:<?php echo number_format($list[$i]['rate'], 1) ?>%"></span>
-                    </div>
-                    <div class="poll_numerical">
-                    	<strong class="poll_cnt"><?php echo $list[$i]['cnt'] ?> 표</strong>
-                    	<span class="poll_percent"><?php echo number_format($list[$i]['rate'], 1) ?> %</span>
+                        <span style="width:<?php echo number_format($list[$i]['rate'], 1) ?>%"><strong class="poll_cnt"><?php echo $list[$i]['cnt'] ?> 표</strong></span>
                     </div>
                 </li>
             	<?php }  ?>

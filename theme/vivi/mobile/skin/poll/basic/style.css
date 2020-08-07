@@ -1,6 +1,7 @@
 @charset "utf-8";
 
-/* ### 기본 스타일 커스터마이징 시작 ### */
+/*--- 기본 스타일 커스터마이징 시작 ---*/
+
 #poll a.btn_admin {} /* 관리자 전용 버튼 */
 #poll a.btn_admin:focus, #poll a.btn_admin:hover {}
 
@@ -29,79 +30,90 @@
 #poll .win_btn button {}
 #poll .win_btn input {}
 
-/* ### 기본 스타일 커스터마이징 끝 ### */
+/*--- 기본 스타일 커스터마이징 끝 ---*/
 
 /* 설문조사 스킨 */
-#poll {background:#fff;border:1px solid #dde7e9;margin:15px 10px}
-#poll header {position:relative;padding:15px;border-bottom:1px solid #dde7e9}
-#poll header:after {display:block;visibility:hidden;clear:both;content:""}
-#poll header h2 {display:inline-block;float:left;line-height:24px;font-size:1.2em}
-#poll header h2:after {display:block;visibility:hidden;clear:both;content:""}
-#poll header .btn_result {float:right;display:inline-block;line-height:20px;height:28px;border:1px solid #d5d9dd;color:#3a8afd;border-radius:2px;padding:2px 5px;background:#fff}
-#poll header .btn_admin {float:right;height:28px;margin-right:5px;line-height:28px;font-size:1.4em}
-#poll ul {padding:10px 20px}
-#poll li {padding:5px 0}
+#poll {position:relative}
+#poll:after {display:block;visibility:hidden;clear:both;content:""}
+#poll h2 {font-size:1.4em;color:#000;margin-bottom:20px;text-align:center}
+#poll .btn_admin {display:none;position:absolute;top:10px;right:10px;z-index:99;background:#ff0000;color:#fff;width:40px !important;height:40px !important;padding:0 !important;line-height:40px;border-radius:30px;text-align:center;font-size:16px}
+#poll:hover .btn_admin {display:block}
+#poll .btn_admin :hover {transform:rotate( -45deg )}
 
-.selec_chk {position:absolute;top:0;left:0;width:0;height:0;opacity:0;outline:0;z-index:-1;overflow:hidden}
-.chk_box {position:relative}
-.chk_box input[type="radio"] {position:absolute;top:0;left:0;width:0;height:0;opacity:0;outline:0;z-index:-1;overflow:hidden}
-.chk_box input[type="radio"] + label {position:relative;padding-left:23px;display:inline-block;color:#676e70}
-.chk_box input[type="radio"] + label span {position:absolute;top:0;left:0;width:15px;height:15px;display:block;background:#f7f8f9;border:1px solid #cdd6df;border-radius:50%}
-.chk_box input[type="radio"]:checked + label {color:#3a8afd}
-.chk_box input[type="radio"]:checked + label span {border-color:#3a8afd}
-.chk_box input[type="radio"]:checked + label span:before {width:7px;height:7px;background:#3a8afd;content:'';position:absolute;top:3px;left:3px;border-radius:50%}
+#poll .poll_cnt {border-radius:10px;padding:10px;font-weight:bold;background:#edeef2;color:#133856}
+#poll .poll_cnt p {font-size:1.2em;padding:5px 0 15px;margin-bottom:10px;border-bottom:1px solid #e9e7e7;text-align:center}
+#poll .poll_cnt i {display:inline-block;margin-right:5px;color:#fff;background:#fff;font-weight:bold;padding:3px;border:1px solid #c5c7cc;border-radius:50px;font-size:0.85em;vertical-align:inherit}
+#poll .qali_poll input {opacity:0;width:1px;height:1px}
+#poll .click_on {color:#2aba8a}
+#poll .click_on i {color:#2aba8a;background:#fff}
 
-#poll .poll_con {}
-#poll .poll_con p {font-weight:bold;padding:20px 20px 5px;color:#000;font-size:1.167em}
-#poll_btn {padding:0 20px 20px;text-align:center}
-#poll_btn:after {display:block;visibility:hidden;clear:both;content:""}
-#poll_btn .btn_poll {display:block;width:100%;height:40px;line-height:40px;padding:0 10px;border:0;font-weight:bold;background:#3a8afd;color:#fff;border-radius:3px}
+#poll li {padding:8px 0;line-height:15px}
+#poll li i {display:inline-block;float:left;font-size:1.2em}
+#poll li:hover i {color:#fff;border:1px solid #5870ff;background:#5870ff}
+#poll .poll_btn {margin:5px 0 10px}
+#poll .btn_result {float:left;display:inline-block;width:49%;line-height:40px;height:40px;border:1px solid #e8e8e8;text-align:center;background:#fff;font-weight:bold;margin-right:2%;border-radius:2px}
+#poll button {width:49%;height:40px;background:#5870ff;color:#fff;border-radius:2px;border:0;padding:0}
+
 
 /* 설문조사 결과 (새창) */
-#poll_result {background:#fff}
+#poll_result {}
 #poll_result section {}
 #poll_result .tbl_wrap {margin:0}
+#poll_result a {}
 #poll_result .sv_member,
 #poll_result .sv_guest {font-weight:bold}
-#poll_result .poll_all {position:absolute;top:10px;right:10px;display:inline-block;margin:0 0 10px;line-height:30px;font-size:0.92em;color:#3a8afd;background:#f6f6f6;padding:0 10px;border-radius:5px}
-#poll_result_list {clear:both;margin:20px;border:1px solid #d6e2f4;border-top:0;background:#fff;border-radius:5px}
-#poll_result_list h2 {margin:0;font-size:1.25em;padding:15px;margin:0 0 15px;border-top:1px solid #d6e2f4;border-bottom:1px solid #d6e2f4;text-align:center;background:#edf3fc;color:#375582;border-radius:5px}
+#poll_result .poll_all {float:right;display:inline-block;margin:10px;padding:0 10px;line-height:20px;font-size:0.92em;color:#7e90aa;background:#fff}
+#poll_result_list {margin:0 auto 10px;clear:both;border:1px solid #dbdbdb;background:#fff}
+#poll_result_list h2 {margin:0;font-size:1.2em;padding:10px;border-bottom:1px solid #ddd;text-align:left}
 #poll_result_list dt {margin-right:5%;color:#e8180d;text-align:right}
-#poll_result_list ol {margin:0;padding:0 20px}
-#poll_result_list li {margin:20px 0;position:relative;list-style-position:inside}
-
-.poll_1st .poll_result_graph span {background:#3a8afd}
-.poll_result_graph {position:relative;width:80%;margin:5px 0;height:15px;background:#fff;border-radius:10px;-moz-box-shadow:inset 0px 2px 8px #dadada;-webkit-box-shadow:inset 0px 2px 8px #dadada;box-shadow:inset 0px 2px 8px #dadada}
-.poll_result_graph span {position:absolute;top:0;left:0;height:15px;background:#8395b3;border-radius:10px 10px;white-space:nowrap}
-
-.poll_numerical {display:inline-block;position:absolute;top:0;right:0;text-align:center}
-.poll_numerical .poll_percent {display:block;font-size:1.2em;color:#3a8afd;font-weight:bold;letter-spacing:-0.5px}
-.poll_numerical .poll_cnt {font-size:1em;text-align:right;color:#8d8d8d}
-
-#poll_result_cmt {margin:20px}
+#poll_result_list ol {margin:0;padding:0 10px}
+#poll_result_list li {position:relative;margin:20px 0;list-style-position:inside;font-weight:bold}
+#poll_result_list .poll_percent {position:absolute;top:0;right:0;color:#415b72;font-weight:bold}
+.poll_result_graph {position:relative;margin:5px 0 5px 0;height:22px;background:#edf0f7;border-radius:3px;
+-moz-box-shadow:inset 0 1px 8px -5px #000;
+-webkit-box-shadow:inset 0 1px 8px -5px #000;
+box-shadow:inset 0 1px 8px -5px #000}
+.poll_result_graph span {position:absolute;top:0;left:0;height:22px;background:#5870ff;border-bottom:1px solid #5870ff;border-radius:3px;white-space:nowrap}
+.poll_result_graph span .poll_cnt {display:none;position:absolute;top:28px;right:0;padding:0 7px;line-height:22px;font-size:0.92em;text-align:right;background:#fff;color:#8fa0af;border:1px solid #d7d9e3;border-radius:3px;
+-moz-box-shadow:0 0 5px -1px #ccc;
+-webkit-box-shadow:0 0 5px -1px #ccc;
+box-shadow:0 0 5px -1px #ccc}
+.poll_result_graph span:hover .poll_cnt {display:block}
+.poll_result_graph span .poll_cnt:before {content:"";position:absolute;top:-8px;left:50%;margin-left:-4px;width:0;height:0;border-style:solid;border-width:1px 5px 7px 5px;border-color:transparent transparent #d7d9e3 transparent}
+.poll_result_graph span .poll_cnt:after {content:"";position:absolute;top:-6px;left:50%;margin-left:-3px;width:0;height:0;border-style:solid;border-width:0 4px 6px 4px;border-color: transparent transparent #fff transparent}
 #poll_result_cmt h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
-#poll_result_cmt article {margin:15px 0;position:relative;border-bottom:1px solid #eaeaea}
+#poll_result_cmt h3 {margin:0;font-size:1.25em;padding:0 0 15px;margin:0 0 15px;border-bottom:1px solid #ddd;text-align:center}
+#poll_result_cmt article {position:relative;margin:15px 0;border-bottom:1px solid #d9dee9}
 #poll_result_cmt h1 {position:absolute;margin:0;padding:0;border:0;font-size:0;text-indent:-9999em;line-height:0;overflow:hidden}
 #poll_result_cmt header {margin:0 0 5px}
-#poll_result_cmt .poll_datetime {display:inline-block;font-size:0.92em;color:#777}
+#poll_result_cmt .poll_datetime {display:inline-block;font-size:0.92em;color:#888d92}
 #poll_result_cmt .profile_img img {border-radius:50%}
-#poll_result_cmt p {padding:10px;line-height:1.5em}
+#poll_result_cmt p {margin:10px 0;line-height:1.5em}
+#poll_result_cmt fieldset {margin-bottom:0;text-align:left}
+#poll_result_cmt fieldset p {margin:0 0 15px;padding:3px 0 0px;text-align:left}
+#poll_result_cmt footer {text-align:right}
+#poll_result_cmt .btn_submit {float:right;padding:0 20px}
 
-#poll_other_q h3 {margin:0;font-size:1.25em;padding:10px;border-bottom:1px solid #eaeaea;text-align:left}
-#poll_other_q h3 span {background:#f7f8e3;color:#c97600;padding:3px;display:inline-block;border-radius:5px;margin-right:5px;font-weight:normal;font-size:0.8em}
-#poll_result_wcmt {border:1px solid #cfd4db;margin-bottom:10px}
-#poll_result_wcmt input {border:0;height:80px;padding:10px}
-#poll_result_cmt .btn_submit {padding:0 20px;float:right}
+.poll_result_wcmt {margin-bottom:10px}
+.poll_result_wcmt h3 {padding:15px 10px;border:1px solid #d9dee9;border-bottom:0;background:#fff}
+.poll_result_wcmt h3 span {padding:2px 3px;background:#5870ff;border:1px solid #475ee8;color:#fff}
+.poll_result_wcmt textarea {height:80px;background:#fff}
+.poll_result_wcmt .poll_result_guest {margin-top:10px}
+.poll_result_wcmt .poll_result_guest input {background:#fff}
+.poll_result_wcmt .full_btn_submit {margin-top:10px}
 
-.poll_guest input {border-radius:0;border:1px solid #cfd4db;padding:10px;margin-bottom:10px;display:inline-block}
+.poll_cmt_del:after {display:block;visibility:hidden;clear:both;content:""}
+.poll_cmt_del a {display:inline-block;float:right;margin-left:5px;color:#49857c;font-size:15px}
+.poll_cmt_del a:hover {color:#5488e8}
+.poll_cmt_del i {display:inline-block;width:30px;padding:5px;background:#f1f3f6;border:1px solid #d9dee9;border-bottom:0;border-radius:3px;text-align:center}
 
-.poll_cmt_del {float:right}
-.poll_cmt_del a {display:inline-block;margin:0 0 5px 10px;color:#c7c9cb;font-size:15px}
-.poll_cmt_del:hover a {color:#3a8afd}
-
-#poll_result_oth {clear:both;margin:20px}
+#poll_result_oth {padding:20px 0 30px}
 #poll_result_oth h2 {padding:0 0 10px}
 #poll_result_oth ul {margin:0;padding:0;list-style:none;border:1px solid #ddd;background:#fff;border-top:0}
-#poll_result_oth ul li{border-top:1px solid #eaeaea;position:relative;line-height:20px}
+#poll_result_oth ul li {position:relative;border-top:1px solid #ddd;line-height:20px}
 #poll_result_oth a {display:block;padding:10px}
 #poll_result_oth li span {position:absolute;bottom:10px;right:15px;color:#777;font-size:0.92em}
+
+@media (max-width:980px){
+	#poll {margin-bottom:20px}
+}

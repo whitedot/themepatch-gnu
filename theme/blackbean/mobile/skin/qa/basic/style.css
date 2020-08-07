@@ -75,27 +75,39 @@
 #bo_cate ul:after {display:block;visibility:hidden;clear:both;content:""} 
 #bo_cate li {display:inline-block;float:left}
 #bo_cate a {display:block;line-height:24px;padding:15px}
-#bo_cate #bo_cate_on {display:inline-block;position:relative;color:#3a8afd}
-#bo_cate #bo_cate_on:after {content:"";position:absolute;left:0;bottom:0;width:100%;height:4px;display:inline-block;background:#3a8afd}
+#bo_cate #bo_cate_on {display:inline-block;position:relative;color:#fe4444}
+#bo_cate #bo_cate_on:after {content:"";position:absolute;left:0;bottom:0;width:100%;height:4px;display:inline-block;background:#fe4444}
 
 /* 게시판 목록 공통 */
-.bo_fx {margin-bottom:5px;padding:0 10px}
+.bo_fx {margin-bottom:5px;padding:5px 10px}
 .bo_fx:after {display:block;visibility:hidden;clear:both;content:""}
 .bo_fx ul {margin:0;padding:0;list-style:none}
-#bo_list_total {margin:10px;text-align:center;padding:10px;text-align:center;background:#e3e7ec;color:#8b8b8b;border-radius:3px}
 
-.btn_bo_user > li {float:left;text-align:center;margin-left:5px}
-.btn_bo_adm button {border:0;padding:0 10px;background:#d13f4a;color:#fff;text-decoration:none;vertical-align:middle}
-.btn_more_opt {width:30px}
-.more_opt {display:none;position:absolute;top:50px;right:7px;width:85px;background:#fff;border:1px solid #b8bfc4;z-index:999}
-.more_opt:before {content:"";position:absolute;top:-8px;right:6px;width:0;height:0;border-style:solid;border-width:0 6px 8px 6px;border-color:transparent transparent #b8bfc4 transparent}
-.more_opt:after {content:"";position:absolute;top:-6px;right:6px;width:0;height:0;border-style:solid;border-width:0 6px 8px 6px;border-color:transparent transparent #fff transparent}
-.more_opt li {display:block;border-bottom:1px solid #f1f1f1;padding:10px;margin:0;color:#6b757c;text-align:left}
+#bo_top_option {padding:0 10px;border-bottom:1px solid #f3f3f3}
+#bo_top_option:after {display:block;visibility:hidden;clear:both;content:""}
+#bo_list_total {float:left;padding:10px 0;margin-top:5px}
+
+.btn_bo_user {float:right;margin:0;padding:10px;list-style:none}
+.btn_bo_user li {float:left;position:relative}
+.btn_bo_adm {text-align:right}
+.btn_bo_adm li {display:inline-block}
+.btn_bo_adm button {padding:5px 10px;line-height:15px;height:35px;background:#fff;color:#000;border:1px solid #c1c1c1;border-radius:3px;text-decoration:none;vertical-align:middle}
+.bo_notice td {background:#f7f7f7}
+.bo_notice td a {font-weight:bold}
+.td_num strong {color:#000}
+.bo_current {color:#e8180c}
+.td_subject img {margin-left:3px}
+.cnt_cmt {font-weight:bold}
+
+.more_opt {display:none;position:absolute;top:45px;right:0;max-width:90px;background:#fff;border:1px solid #b8bfc4;z-index:999}
+.more_opt:before {content:"";position:absolute;top:-8px;right:13px;width:0;height:0;border-style:solid;border-width:0 6px 8px 6px;border-color:transparent transparent #b8bfc4 transparent}
+.more_opt:after {content:"";position:absolute;top:-6px;right:13px;width:0;height:0;border-style:solid;border-width:0 6px 8px 6px;border-color:transparent transparent #fff transparent}
+.more_opt li {border-bottom:1px solid #f1f1f1;padding:10px;float:inherit;width:88px;margin:0;color:#6b757c;text-align:center}
 .more_opt li:last-child {border-bottom:0}
-.more_opt li button, .more_opt li a {width:100%;border:0;background:#fff;color:#6b757c}
+.more_opt li button, .more_opt li a {width:100%;border:0;padding:0;text-align:center;background:#fff;color:#6b757c}
 .more_opt li:hover a,
 .more_opt li:hover button {color:#000}
-.more_opt li i {line-height:20px}
+.more_opt li i {display:inline-block}
 
 .bo_cate_link {display:inline-block;background:#e2eaf6;padding:0 5px;line-height:20px;border-radius:5px;font-weight:bold;font-size:11px;color:#3ca1ff !important;text-decoration:none;/*font-size:0.92em*/} /* 글제목줄 분류스타일 */
 .bo_cnt {display:block;width:100%;font-size:1.083em;font-weight:bold;line-height:1.4em}
@@ -240,8 +252,8 @@
 
 #bo_v_addq {margin:0 0 30px;text-align:right}
 
-#bo_v_ans {margin-top:10px;background:#fff;position:relative}
-#bo_v_ans h2 {font-size:1.2em;padding:15px 15px 5px}
+#bo_v_ans {margin-top:10px;padding:0 15px 0;background:#fff;position:relative}
+#bo_v_ans h2 {font-size:1.2em;padding:15px 0}
 #bo_v_ans h2 span {display:inline-block}
 #bo_v_ans h2 .tit_rpl {font-size:11px;padding:0 5px;line-height:23px;border-radius:25px;margin-right:5px;font-weight:normal;background:#fff;color:#3a8afd;border:1px solid #a9c6fe}
 #bo_v_ans h2 .tit_cnt {font-size:1.125em}

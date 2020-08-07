@@ -10,14 +10,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 
 <div id="ft">
-    <div id="ft_copy">
-        <div id="ft_company">
-            <a href="<?php echo get_pretty_url('content', 'company'); ?>">회사소개</a>
-            <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">개인정보처리방침</a>
-            <a href="<?php echo get_pretty_url('content', 'provision'); ?>">서비스이용약관</a>
-        </div>
-        Copyright &copy; <b>소유하신 도메인.</b> All rights reserved.<br>
+    <div id="ft_company">
+        <a href="<?php echo get_pretty_url('content', 'company'); ?>">회사소개</a>
+        <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">개인정보처리방침</a>
+        <a href="<?php echo get_pretty_url('content', 'provision'); ?>">서비스이용약관</a>
     </div>
+    
     <div class="ft_cnt">
     	<h2>사이트 정보</h2>
         <p class="ft_info">
@@ -29,6 +27,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 			개인정보관리책임자 :  정보책임자명<br>
 		</p>
     </div>
+    
+    <div id="ft_copy">Copyright &copy; <b>소유하신 도메인.</b> All rights reserved.</div>
     <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span></button>
     <?php
     if(G5_DEVICE_BUTTON_DISPLAY && G5_IS_MOBILE) { ?>

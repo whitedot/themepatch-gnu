@@ -26,11 +26,10 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
         $cmt_sv = $cmt_amt - $i + 1; // 댓글 헤더 z-index 재설정 ie8 이하 사이드뷰 겹침 문제 해결
 		$c_reply_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=c#bo_vc_w';
 		$c_edit_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=cu#bo_vc_w';
-        $is_comment_reply_edit = ($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) ? 1 : 0;
 	?>
 
 	<article id="c_<?php echo $comment_id ?>" <?php if ($cmt_depth) { ?>style="margin-left:<?php echo $cmt_depth ?>px;border-top-color:#e0e0e0"<?php } ?>>
-        <div class="pf_img"><?php echo get_member_profile_img($list[$i]['mb_id']) ?></div>
+        <div class="pf_img"><?php echo get_member_profile_img($list[$i]['mb_id']); ?></div>
         
         <div class="cm_wrap">
 
@@ -54,7 +53,9 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 	                <?php if (strstr($list[$i]['wr_option'], "secret")) { ?><img src="<?php echo $board_skin_url; ?>/img/icon_secret.gif" alt="비밀글"><?php } ?>
 	                <?php echo $comment ?>
 	            </p>
-	            <?php if($is_comment_reply_edit) {
+	            <?php if($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) {
+	                $query_string = clean_query_string($_SERVER['QUERY_STRING']);
+	
 	                if($w == 'cu') {
 	                    $sql = " select wr_id, wr_content, mb_id from $write_table where wr_id = '$c_id' and wr_is_comment = '1' ";
 	                    $cmt = sql_fetch($sql);
@@ -62,7 +63,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 	                        $cmt['wr_content'] = '';
 	                    $c_wr_content = $cmt['wr_content'];
 	                }
-				?>            
+				?>
 	            <?php } ?>
 	        </div>
 	        <span id="edit_<?php echo $comment_id ?>" class="bo_vc_w"></span><!-- 수정 -->
@@ -71,16 +72,14 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 	        <input type="hidden" value="<?php echo strstr($list[$i]['wr_option'],"secret") ?>" id="secret_comment_<?php echo $comment_id ?>">
 	        <textarea id="save_comment_<?php echo $comment_id ?>" style="display:none"><?php echo get_text($list[$i]['content1'], 0) ?></textarea>
 		</div>
-        <?php if($is_comment_reply_edit){ ?>
 		<div class="bo_vl_opt">
-            <button type="button" class="btn_cm_opt btn_b01 btn"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">댓글 옵션</span></button>
+            <button type="button" class="btn_cm_opt btn_b01 btn2"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">댓글 옵션</span></button>
         	<ul class="bo_vc_act">
                 <?php if ($list[$i]['is_reply']) { ?><li><a href="<?php echo $c_reply_href; ?>" onclick="comment_box('<?php echo $comment_id ?>', 'c'); return false;">답변</a></li><?php } ?>
                 <?php if ($list[$i]['is_edit']) { ?><li><a href="<?php echo $c_edit_href; ?>" onclick="comment_box('<?php echo $comment_id ?>', 'cu'); return false;">수정</a></li><?php } ?>
                 <?php if ($list[$i]['is_del']) { ?><li><a href="<?php echo $list[$i]['del_link']; ?>" onclick="return comment_delete();">삭제</a></li><?php } ?>
             </ul>
         </div>
-        <?php } ?>
         <script>
 			$(function() {			    
 		    // 댓글 옵션창 열기
@@ -95,7 +94,6 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 		        container.hide();
 		    });
 		});
-			
 		</script>
     </article>
     <?php } ?>
@@ -159,7 +157,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
             <?php } ?>
         </div>
         <div class="btn_confirm">
-            <span class="secret_cm chk_box">
+        	<span class="secret_cm chk_box">
 	            <input type="checkbox" name="wr_secret" value="secret" id="wr_secret" class="selec_chk">
 	            <label for="wr_secret"><span></span>비밀글</label>
             </span>
@@ -338,16 +336,13 @@ $(function() {
     );
 });
 <?php } ?>
-</script>
-<?php } ?>
-<!-- } 댓글 쓰기 끝 -->
-<script>
-jQuery(function($) {            
+$(function() {            
     //댓글열기
-    $(".cmt_btn").click(function(e){
-        e.preventDefault();
+    $(".cmt_btn").click(function(){
         $(this).toggleClass("cmt_btn_op");
         $("#bo_vc").toggle();
     });
 });
 </script>
+<?php } ?>
+<!-- } 댓글 쓰기 끝 -->

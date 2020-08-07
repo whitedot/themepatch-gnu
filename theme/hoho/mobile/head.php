@@ -14,6 +14,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
 
     <div class="to_content"><a href="#container">본문 바로가기</a></div>
+    <?php if ($is_admin == 'super' || $is_auth) { ?><a href="<?php echo G5_ADMIN_URL ?>" class="hd_admin" target="blank">관리자</a><?php } ?>
 
     <?php
     if(defined('_INDEX_')) { // index에서만 실행
@@ -25,12 +26,39 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
         <div id="logo">
             <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/m_logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
         </div>
+        <ul id="tnb" class="pc_view">
+            <?php if ($is_member) {  ?>
+            <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
+            <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
+            <?php if ($is_admin) {  ?>
+            <li class="tnb_admin"><a href="<?php echo G5_ADMIN_URL ?>">관리자</a></li>
+            <?php }  ?>
+            <?php } else {  ?>
+            <li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
+            <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
+            <?php }  ?>
 
-        <button type="button" id="gnb_open" class="hd_opener"><i class="fa fa-bars" aria-hidden="true"></i><span class="sound_only"> 메뉴열기</span></button>
+        </ul>
+        <button type="button" id="gnb_open" class="m_view"><i class="fa fa-bars" aria-hidden="true"></i><span class="sound_only"> 메뉴열기</span></button>
+        <button type="button" id="user_open" class="m_view"><i class="fa fa-user-o" aria-hidden="true"></i><span class="sound_only"> 유저메뉴열기</span></button>
+    </div>
+    <div id="gnb">
+        <div class="gnb_bg"></div>
+        <div class="gnb_wr">
+            <button type="button" id="gnb_close" class="m_view"><i class="fa fa-times"></i><span class="sound_only">메뉴 닫기</span></button>
+            <ul class="gnb_login m_view">
+                <?php if ($is_member) {  ?>
+                <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
+                <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
+                <?php if ($is_admin) {  ?>
+                <li class="tnb_admin"><a href="<?php echo G5_ADMIN_URL ?>">관리자</a></li>
+                <?php }  ?>
+                <?php } else {  ?>
+                <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
+                <li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
+                <?php }  ?>
 
-        <div id="gnb" class="hd_div">
-            <button type="button" id="gnb_close" class="hd_closer"><span class="sound_only">메뉴 닫기</span><i class="fa fa-times" aria-hidden="true"></i></button>
-			<?php echo outlogin('theme/basic'); // 외부 로그인 ?>
+            </ul>
             <ul id="gnb_1dul">
             <?php
             $menu_datas = get_menu_db(1, true);
@@ -44,8 +72,9 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
                     $k = 0;
                     foreach( (array) $row['sub'] as $row2 ){
 						if( empty($row2) ) continue;
+
                         if($k == 0)
-                            echo '<button type="button" class="btn_gnb_op"><span class="sound_only">하위분류</span></button><ul class="gnb_2dul">'.PHP_EOL;
+                            echo '<button type="button" class="btn_gnb_op">하위분류</button><ul class="gnb_2dul">'.PHP_EOL;
                     ?>
                         <li class="gnb_2dli"><a href="<?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" class="gnb_2da"><span></span><?php echo $row2['me_name'] ?></a></li>
                     <?php
@@ -64,23 +93,16 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
                 <li id="gnb_empty">메뉴 준비 중입니다.<?php if ($is_admin) { ?> <br><a href="<?php echo G5_ADMIN_URL; ?>/menu_list.php">관리자모드 &gt; 환경설정 &gt; 메뉴설정</a>에서 설정하세요.<?php } ?></li>
             <?php } ?>
             </ul>
-            <ul id="hd_nb">
-            	<li class="hd_nb1"><a href="<?php echo G5_BBS_URL ?>/faq.php" id="snb_faq"><i class="fa fa-question" aria-hidden="true"></i>FAQ</a></li>
-                <li class="hd_nb2"><a href="<?php echo G5_BBS_URL ?>/qalist.php" id="snb_qa"><i class="fa fa-comments" aria-hidden="true"></i>1:1문의</a></li>
-                <li class="hd_nb3"><a href="<?php echo G5_BBS_URL ?>/current_connect.php" id="snb_cnt"><i class="fa fa-users" aria-hidden="true"></i>접속자 <span><?php echo connect('theme/basic'); // 현재 접속자수 ?></span></a></li>
-                <li class="hd_nb4"><a href="<?php echo G5_BBS_URL ?>/new.php" id="snb_new"><i class="fa fa-history" aria-hidden="true"></i>새글</a></li>   
-            </ul>
-        </div>
 
-        <button type="button" id="user_btn" class="hd_opener"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">사용자메뉴</span></button>
-        <div class="hd_div" id="user_menu">
-            <button type="button" id="user_close" class="hd_closer"><span class="sound_only">메뉴 닫기</span><i class="fa fa-times" aria-hidden="true"></i></button>
+
+            <button type="button" class="pc_view" id="sch_op_btn"><span class="sound_only">검색열기</span><i class="fa fa-search" aria-hidden="true"></i></button>
             <div id="hd_sch">
                 <h2>사이트 내 전체검색</h2>
+
                 <form name="fsearchbox" action="<?php echo G5_BBS_URL ?>/search.php" onsubmit="return fsearchbox_submit(this);" method="get">
                 <input type="hidden" name="sfl" value="wr_subject||wr_content">
                 <input type="hidden" name="sop" value="and">
-                <input type="text" name="stx" id="sch_stx" placeholder="검색어를 입력해주세요" required maxlength="20">
+                <input type="text" name="stx" id="sch_stx" placeholder="검색어(필수)" required maxlength="20">
                 <button type="submit" value="검색" id="sch_submit"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
                 </form>
 
@@ -111,63 +133,13 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
                     return true;
                 }
                 </script>
+
+                <button type="button" class="sch_cl_btn pc_view"><span class="sound_only">닫기</span><i class="fa fa-times-circle-o"></i></button>
             </div>
+
             <?php echo popular('theme/basic'); // 인기검색어 ?>
-            <div id="text_size">
-            <!-- font_resize('엘리먼트id', '제거할 class', '추가할 class'); -->
-                <button id="size_down" onclick="font_resize('container', 'ts_up ts_up2', '', this);" class="select"><img src="<?php echo G5_URL; ?>/img/ts01.png" width="20" alt="기본"></button>
-                <button id="size_def" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up', this);"><img src="<?php echo G5_URL; ?>/img/ts02.png" width="20" alt="크게"></button>
-                <button id="size_up" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up2', this);"><img src="<?php echo G5_URL; ?>/img/ts03.png" width="20" alt="더크게"></button>
-            </div>
+
         </div>
-
-        <script>
-        $(function () {
-            //폰트 크기 조정 위치 지정
-            var font_resize_class = get_cookie("ck_font_resize_add_class");
-            if( font_resize_class == 'ts_up' ){
-                $("#text_size button").removeClass("select");
-                $("#size_def").addClass("select");
-            } else if (font_resize_class == 'ts_up2') {
-                $("#text_size button").removeClass("select");
-                $("#size_up").addClass("select");
-            }
-
-            $(".hd_opener").on("click", function() {
-                var $this = $(this);
-                var $hd_layer = $this.next(".hd_div");
-
-                if($hd_layer.is(":visible")) {
-                    $hd_layer.hide();
-                    $this.find("span").text("열기");
-                } else {
-                    var $hd_layer2 = $(".hd_div:visible");
-                    $hd_layer2.prev(".hd_opener").find("span").text("열기");
-                    $hd_layer2.hide();
-
-                    $hd_layer.show();
-                    $this.find("span").text("닫기");
-                }
-            });
-
-            $("#container").on("click", function() {
-                $(".hd_div").hide();
-
-            });
-
-            $(".btn_gnb_op").click(function(){
-                $(this).toggleClass("btn_gnb_cl").next(".gnb_2dul").slideToggle(300);
-                
-            });
-
-            $(".hd_closer").on("click", function() {
-                var idx = $(".hd_closer").index($(this));
-                $(".hd_div:visible").hide();
-                $(".hd_opener:eq("+idx+")").find("span").text("열기");
-            });
-        });
-        </script>
-        
     </div>
 </header>
 
@@ -176,8 +148,5 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 <div id="wrapper">
 
     <div id="container">
-    <?php if (!defined("_INDEX_")) { ?>
-    	<h2 id="container_title" class="top" title="<?php echo get_text($g5['title']); ?>">
-    		<a href="javascript:history.back();"><i class="fa fa-chevron-left" aria-hidden="true"></i><span class="sound_only">뒤로가기</span></a> <?php echo get_head_title($g5['title']); ?>
-    	</h2>
-    <?php } ?>
+       <div id="idx_left">     
+       <?php if (!defined("_INDEX_")) { ?><h2 id="container_title" class="top" title="<?php echo get_text($g5['title']); ?>"><?php echo get_head_title($g5['title']); ?></h2><?php } ?>

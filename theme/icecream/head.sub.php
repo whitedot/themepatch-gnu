@@ -73,9 +73,12 @@ add_javascript('<script src="'.G5_JS_URL.'/common.js?ver='.G5_JS_VER.'"></script
 add_javascript('<script src="'.G5_JS_URL.'/wrest.js?ver='.G5_JS_VER.'"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/placeholders.min.js"></script>', 0);
 add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/font-awesome/css/font-awesome.min.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_CSS_URL.'/font.css">', 1);
+
+add_javascript('<script src="'.G5_JS_URL.'/jquery.bxslider.js"></script>', 1);
 
 if(G5_IS_MOBILE) {
-    add_javascript('<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>', 1); // overflow scroll 감지
+    echo '<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>'.PHP_EOL; // overflow scroll 감지
 }
 if(!defined('G5_IS_ADMIN'))
     echo $config['cf_add_script'];

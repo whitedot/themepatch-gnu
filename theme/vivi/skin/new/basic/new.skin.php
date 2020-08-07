@@ -101,7 +101,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$new_skin_url.'/style.css">', 0);
         <td class="td_name"><?php echo $list[$i]['name'] ?></td>
         <td class="td_date"><?php echo $list[$i]['datetime2'] ?></td>
     </tr>
-    <?php } ?>
+    <?php }  ?>
 
     <?php if ($i == 0)
         echo '<tr><td colspan="'.$colspan.'" class="empty_table">게시물이 없습니다.</td></tr>';

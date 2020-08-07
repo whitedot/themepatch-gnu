@@ -5,11 +5,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
 ?>
 <div id="reg_result">
+	<div class="reg_result_wr">
     <h2><strong>회원가입이 완료</strong>되었습니다.</h2>
     <div class="reg_result_wr">
-        <p class="reg_cong">
-            <strong><?php echo get_text($mb['mb_name']); ?></strong>님의 회원가입을 진심으로 축하합니다.<br>
-        </p>
+        <h2><strong><?php echo get_text($mb['mb_name']); ?></strong>님의 회원가입을 진심으로 축하합니다.</h2>
 
         <?php if (is_use_email_certify()) { ?>
         <p>
@@ -36,7 +35,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
             회원 탈퇴는 언제든지 가능하며 일정기간이 지난 후, 회원님의 정보는 삭제하고 있습니다.<br>
             감사합니다.
         </p>
-    </div>
+	</div>
 
     <div class="btn_confirm">
         <a href="<?php echo G5_URL ?>/">메인으로</a>

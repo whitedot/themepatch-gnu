@@ -36,16 +36,17 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php echo $page ?> 페이지
         </div>
 
+        <?php if ($rss_href || $write_href) { ?>
         <ul class="btn_bo_user">
-        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
-            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
+        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn2" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
+            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn2" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
             <li>
-            	<button type="button" class="btn_bo_sch btn_b01 btn" title="게시판 검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">게시판 검색</span></button> 
+            	<button type="button" class="btn_bo_sch btn_b01 btn2" title="게시판 검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">게시판 검색</span></button> 
             </li>
-            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
+            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn2" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
         	<?php if ($is_admin == 'super' || $is_auth) {  ?>
         	<li>
-        		<button type="button" class="btn_more_opt is_list_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
+        		<button type="button" class="btn_more_opt is_list_btn btn_b01 btn2" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
         		<?php if ($is_checkbox) { ?>	
 		        <ul class="more_opt is_list_btn">  
 		            <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
@@ -56,6 +57,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         	</li>
         	<?php }  ?>
         </ul>
+        <?php } ?>
     </div>
     <!-- } 게시판 페이지 정보 및 버튼 끝 -->
 
@@ -124,39 +126,41 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                         }
                          ?>
                         </a>
-                    </div>
-                    <div class="gall_text_href">
                         <?php if ($is_category && $list[$i]['ca_name']) { ?>
                         <a href="<?php echo $list[$i]['ca_name_href'] ?>" class="bo_cate_link"><?php echo $list[$i]['ca_name'] ?></a>
                         <?php } ?>
-                        <a href="<?php echo $list[$i]['href'] ?>" class="bo_tit">
-                            
-                            <?php // echo $list[$i]['icon_reply']; ?>
-                        	<!-- 갤러리 댓글기능 사용시 주석을 제거하세요. -->
-                        
-                            <?php echo $list[$i]['subject'] ?>                      
-                            <?php
-                            // if ($list[$i]['file']['count']) { echo '<'.$list[$i]['file']['count'].'>'; }
-                            if ($list[$i]['icon_new']) echo "<span class=\"new_icon\">N<span class=\"sound_only\">새글</span></span>";
-                            if (isset($list[$i]['icon_hot'])) echo rtrim($list[$i]['icon_hot']);
-                            //if (isset($list[$i]['icon_file'])) echo rtrim($list[$i]['icon_file']);
-                            //if (isset($list[$i]['icon_link'])) echo rtrim($list[$i]['icon_link']);
-                            if (isset($list[$i]['icon_secret'])) echo rtrim($list[$i]['icon_secret']);
-							?>
-							<?php if ($list[$i]['comment_cnt']) { ?><span class="sound_only">댓글</span><span class="cnt_cmt"><?php echo $list[$i]['wr_comment']; ?></span><span class="sound_only">개</span><?php } ?>
-                         </a>
-                         <span class="bo_cnt"><?php echo utf8_strcut(strip_tags($list[$i]['wr_content']), 68, '..'); ?></span>
                     </div>
+                    <div id="gall_ct">
+	                    <div class="gall_text_href">
+	                        <a href="<?php echo $list[$i]['href'] ?>" class="bo_tit">
+	                            <?php // echo $list[$i]['icon_reply']; ?>
+	                        	<!-- 갤러리 댓글기능 사용시 주석을 제거하세요. -->
+	                        
+	                            <?php echo $list[$i]['subject'] ?>                      
+	                            <?php
+	                            // if ($list[$i]['file']['count']) { echo '<'.$list[$i]['file']['count'].'>'; }
+	                            if ($list[$i]['icon_new']) echo "<span class=\"new_icon\">N<span class=\"sound_only\">새글</span></span>";
+	                            if ($list[$i]['icon_hot']) echo "<span class=\"hot_icon\">H<span class=\"sound_only\">인기글</span></span>";
 
-                    <div class="gall_info">
-                    	<span class="sound_only">작성자 </span><?php echo $list[$i]['name'] ?>
-                        <span class="gall_date"><span class="sound_only">작성일 </span><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['datetime2'] ?></span>
-                    	<span class="gall_view"><span class="sound_only">조회 </span><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $list[$i]['wr_hit'] ?></span>
-                    </div>
-                    <div class="gall_option">
-                    	<?php if ($is_good) { ?><span class="sound_only">추천</span><strong><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <?php echo $list[$i]['wr_good'] ?></strong><?php } ?>
-                        <?php if ($is_nogood) { ?><span class="sound_only">비추천</span><strong><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <?php echo $list[$i]['wr_nogood'] ?></strong><?php } ?>           
-                    </div>
+	                            //if (isset($list[$i]['icon_file'])) echo rtrim($list[$i]['icon_file']);
+	                            //if (isset($list[$i]['icon_link'])) echo rtrim($list[$i]['icon_link']);
+	                            if (isset($list[$i]['icon_secret'])) echo rtrim($list[$i]['icon_secret']);
+								?>
+							</a>
+	                    </div>
+
+	                    <div class="gall_info">
+	                    	<span class="sound_only">작성자 </span><?php echo $list[$i]['name'] ?>
+	                        <span class="gall_date gi_bg"><span class="sound_only">작성일 </span><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['datetime2'] ?></span>
+	                    	<span class="gall_view gi_bg"><span class="sound_only">조회 </span><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $list[$i]['wr_hit'] ?></span>
+	                    	<?php if ($list[$i]['comment_cnt']) { ?><span class="sound_only">댓글</span><span class="cnt_cmt gi_bg"><?php echo $list[$i]['wr_comment']; ?></span><span class="sound_only">개</span><?php } ?>
+	                    </div>
+	                    
+	                    <div class="gall_detail">
+	                    	<?php echo utf8_strcut(strip_tags($list[$i]['wr_content']), 68, '..'); ?>
+	                    </div>
+
+	                </div>
                 </div>
             </div>
         </li>
@@ -172,9 +176,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <div class="bo_fx">
         <?php if ($list_href || $write_href) { ?>
         <ul class="btn_bo_user">
-        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
-            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
-            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
+        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn2" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
+            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn2" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
+            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn2" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
         </ul>	
         <?php } ?>
     </div>

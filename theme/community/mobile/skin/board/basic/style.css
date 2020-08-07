@@ -40,12 +40,13 @@
 #bo_list .td_datetime {width:150px;text-align:center}
 #bo_list .td_mng {width:80px;text-align:center}
 #bo_list .notice_icon {display:inline-block;background:#fbe2e6;padding:0 5px;line-height:20px;border-radius:5px;font-weight:bold;font-size:11px;color:#f1364c}
-#bo_list .bo_subject .fa-download {width:16px;line-height:16px;background:#ffefb9;color:#daae37;text-align:center;font-size:10px;border-radius:2px;vertical-align:baseline}
-#bo_list .bo_subject .fa-link {width:16px;line-height:16px;background:#edd3fd;color:#b451fd;text-align:center;font-size:10px;border-radius:2px;vertical-align:baseline}
-#bo_list .bo_subject .fa-heart {color:#ff0000;text-align:center;font-size:10px;border-radius:2px}
-#bo_list .bo_subject .new_icon {display:inline-block;width:16px;line-height:16px;font-size:0.833em;color:#23db79;background:#b9ffda;text-align:center;border-radius:2px;margin:0 4px;font-weight:bold;vertical-align:middle}
-#bo_list .bo_subject .fa-lock {display:inline-block;line-height:16px;width:16px;font-size:0.833em;color:#4f818c;background:#cbe3e8;text-align:center;border-radius:2px;font-size:12px;border:1px solid #cbe3e8;vertical-align:baseline}
 
+.fa-heart {color:#ff0000}
+#bo_list .bo_subject .fa-lock {display:inline-block;line-height:14px;width:16px;font-size:0.833em;color:#4f818c;background:#cbe3e8;text-align:center;border-radius:2px;font-size:12px;border:1px solid #cbe3e8;vertical-align:middle}
+#bo_list .bo_subject .new_icon {display:inline-block;width:16px;line-height:16px;font-size:0.833em;color:#2c68b0;background:#e4efff;text-align:center;border-radius:2px;margin-left:2px;font-weight:bold;vertical-align:middle}
+#bo_list .bo_subject .hot_icon {display:inline-block;width:16px;line-height:16px;font-size:0.833em;color:#ff0000;background:#fff;text-align:center;border-radius:2px;vertical-align:middle}
+#bo_list .bo_subject .download_icon {display:inline-block;width:16px;line-height:16px;font-size:0.833em;color:#daae37;background:#ffefb9;text-align:center;border-radius:2px;vertical-align:middle}
+#bo_list .bo_subject .link_icon {display:inline-block;width:16px;line-height:16px;font-size:0.833em;color:#b451fd;background:#edd3fd;text-align:center;border-radius:2px;vertical-align:middle}
 
 #bo_cate h2 {width:0;height:0;font-size:0;line-height:0;overflow:hidden}
 #bo_cate ul {background:#fff;padding-left:1px;border-bottom:1px solid #d9dce3;zoom:1}
@@ -85,7 +86,6 @@
 .more_opt {display:none;position:absolute;top:50px;right:7px;background:#fff;border:1px solid #b8bfc4;z-index:999}
 .more_opt:before {content:"";position:absolute;top:-8px;right:6px;width:0;height:0;border-style:solid;border-width:0 6px 8px 6px;border-color:transparent transparent #b8bfc4 transparent}
 .more_opt:after {content:"";position:absolute;top:-6px;right:6px;width:0;height:0;border-style:solid;border-width:0 6px 8px 6px;border-color:transparent transparent #fff transparent}
-.more_opt.is_list_btn{width:90px}
 .more_opt li {display:block;border-bottom:1px solid #f1f1f1;padding:10px;margin:0;color:#6b757c;text-align:left}
 .more_opt li:last-child {border-bottom:0}
 .more_opt li button, .more_opt li a {width:100%;border:0;background:#fff;color:#6b757c}
@@ -111,9 +111,8 @@
 #bo_v_sns li span {position:absolute;font-size:0;text-indent:-9999em;line-height:0;overflow:hidden}
 
 .bo_cate_link {display:inline-block;background:#e2eaf6;padding:0 5px;line-height:20px;border-radius:5px;font-weight:bold;font-size:11px;color:#3ca1ff !important;text-decoration:none;/*font-size:0.92em*/} /* 글제목줄 분류스타일 */
-.bo_cate_ico {margin-bottom:5px}
 .bo_cnt {display:block;width:100%;font-size:1.083em;font-weight:bold;line-height:1.4em}
-.bo_cnt i {color:#8d96c2;font-size:12px}
+.bo_cnt i {font-size:12px}
 .bo_cnt .fa-heart {color:#ff0000}
 .bo_chk {display:inline-block;float:left;margin-right:5px}
 
@@ -126,7 +125,7 @@
 .chk_box input[type="checkbox"]:checked + label span {background:url(./img/chk.png) no-repeat 50% 50% #3a8afd;border-color:#1471f6;border-radius:3px}
 .all_chk.chk_box input[type="checkbox"] + label span {top:18px;left:15px}
 
-.bo_cmt {background:#e9eff5;color:#3a8afd;font-size:0.925em;height:16px;padding:0 5px;border-radius:2px;vertical-align:top;min-width:16px}
+.bo_cmt {display:inline-block;font-weight:bold;background:#ff5959;border-radius:3px;padding:0 2px;font-size:10px;line-height:16px;color:#fff;min-width:16px;height:16px;text-align:center}
 
 .bo_subject {display:block;width:100%;padding-bottom:5px}
 .bo_current {color:#e8180c}
@@ -300,7 +299,7 @@
 .bo_vc_w_wr:after {display:block;visibility:hidden;clear:both;content:""}
 .bo_vc_w .bo_vc_secret {display:block}
 
-#bo_vc_send_sns {display:block;margin-bottom:10px}
+#bo_vc_send_sns {display:block;float:left}
 #bo_vc_sns {display:block;margin:0;padding:0;list-style:none;zoom:1}
 #bo_vc_sns:after {display:block;visibility:hidden;clear:both;content:""}
 #bo_vc_sns li {float:left;margin:0 5px 0 0}

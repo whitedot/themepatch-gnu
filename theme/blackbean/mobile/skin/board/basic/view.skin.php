@@ -9,30 +9,30 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 
 <!-- 게시판 이름 표시 <div id="bo_v_table"><?php echo ($board['bo_mobile_subject'] ? $board['bo_mobile_subject'] : $board['bo_subject']); ?></div> -->
-<ul class="btn_top top btn_bo_user"> 
-	<li><a href="#bo_vc" class="btn_b03 btn" title="댓글"><i class="fa fa-commenting" aria-hidden="true"></i><span class="sound_only">댓글</span></a></li>
+<ul class="btn_top top btn_bo_user">
+	<li><a href="#bo_vc" class="btn_b01 btn2" title="댓글"><i class="fa fa-commenting" aria-hidden="true"></i><span class="sound_only">댓글</span></a></li>
     <?php if ($board['bo_use_sns'] || $scrap_href){ ?>
     <li class="bo_share">
-    	<button type="button" class="btn_share_opt btn_b03 btn is_view_btn" title="공유"><i class="fa fa-share-alt" aria-hidden="true"></i><span class="sound_only">공유</span></button>
+    	<button type="button" class="btn_share_opt btn_b01 btn2 is_view_btn" title="공유"><i class="fa fa-share-alt" aria-hidden="true"></i><span class="sound_only">공유</span></button>
     	<div id="bo_v_share" class="is_view_btn">
-            <?php if ($scrap_href) { ?><a href="<?php echo $scrap_href; ?>" target="_blank" class=" btn_scrap" onclick="win_scrap(this.href); return false;" title="스크랩"><i class="fa fa-thumb-tack" aria-hidden="true"></i><span class="sound_only">스크랩</span></a><?php } ?>
+            <?php if ($scrap_href) { ?><a href="<?php echo $scrap_href; ?>" target="_blank" class="btn_scrap" onclick="win_scrap(this.href); return false;" title="스크랩"><i class="fa fa-thumb-tack" aria-hidden="true"></i><span class="sound_only">스크랩</span></a><?php } ?>
             <?php include_once(G5_SNS_PATH."/view.sns.skin.php"); ?>
         </div>	
     </li>
     <?php } ?>
-    <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b03 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</a></li><?php } ?>
+    <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn2" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</a></li><?php } ?>
 	
 	<li>
-		<button type="button" class="btn_more_opt btn_b03 btn is_view_btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
+		<button type="button" class="btn_more_opt btn_b01 btn2 is_view_btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
     	<?php ob_start(); ?>
 	    <ul class="more_opt is_view_btn">
-	    	<?php if ($reply_href) { ?><li><a href="<?php echo $reply_href ?>"><i class="fa fa-reply" aria-hidden="true"></i> 답변</a></li><?php } ?>
-			<?php if ($update_href) { ?><li><a href="<?php echo $update_href ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 수정</a></li><?php } ?>
-	    	<?php if ($delete_href) { ?><li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;"><i class="fa fa-trash-o" aria-hidden="true"></i> 삭제</a></li><?php } ?>
-	    	<?php if ($copy_href) { ?><li><a href="<?php echo $copy_href ?>" onclick="board_move(this.href); return false;"><i class="fa fa-files-o" aria-hidden="true"></i> 복사</a></li><?php } ?>
-	    	<?php if ($move_href) { ?><li><a href="<?php echo $move_href ?>" onclick="board_move(this.href); return false;"><i class="fa fa-arrows" aria-hidden="true"></i> 이동</a></li><?php } ?>
+	    	<?php if ($reply_href) { ?><li><a href="<?php echo $reply_href ?>">답변  <i class="fa fa-reply" aria-hidden="true"></i></a></li><?php } ?>
+			<?php if ($update_href) { ?><li><a href="<?php echo $update_href ?>">수정 <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li><?php } ?>
+	    	<?php if ($delete_href) { ?><li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;">삭제 <i class="fa fa-trash-o" aria-hidden="true"></i></a></li><?php } ?>
+	    	<?php if ($copy_href) { ?><li><a href="<?php echo $copy_href ?>" onclick="board_move(this.href); return false;">복사 <i class="fa fa-files-o" aria-hidden="true"></i></a></li><?php } ?>
+	    	<?php if ($move_href) { ?><li><a href="<?php echo $move_href ?>" onclick="board_move(this.href); return false;">이동 <i class="fa fa-arrows" aria-hidden="true"></i></a></li><?php } ?>
 	    	<?php if ($search_href) { ?><li><a href="<?php echo $search_href ?>">검색</a></li><?php } ?>
-	    	<li><a href="<?php echo $list_href ?>" class="btn_list"><i class="fa fa-list" aria-hidden="true"></i> 목록</a></li>
+	    	<li><a href="<?php echo $list_href ?>" class="btn_list">목록 <i class="fa fa-list" aria-hidden="true"></i></a></li>
 		</ul>
 		<?php $link_buttons = ob_get_contents(); ob_end_flush(); ?>
 	</li>
@@ -44,11 +44,13 @@ jQuery(function($){
         e.stopPropagation();
         $(".more_opt.is_view_btn").toggle();
     });
+
     // 게시글 공유
     $(".btn_share_opt").on("click", function(e) {
         e.stopPropagation();
         $("#bo_v_share").toggle();
     });
+
     $(document).on("click", function (e) {
         if(!$(e.target).closest('.is_view_btn').length) {
             $(".more_opt.is_view_btn").hide();
@@ -84,7 +86,10 @@ jQuery(function($){
             echo "<div id=\"bo_v_img\">\n";
 
             for ($i=0; $i<=count($view['file']); $i++) {
-                echo get_file_thumbnail($view['file'][$i]);
+                if ($view['file'][$i]['view']) {
+                    //echo $view['file'][$i]['view'];
+                    echo get_view_thumbnail($view['file'][$i]['view']);
+                }
             }
             echo "</div>\n";
 		}
@@ -99,13 +104,13 @@ jQuery(function($){
         <div id="bo_v_act">
             <?php if ($good_href) { ?>
             <span class="bo_v_act_gng">
-                <a href="<?php echo $good_href.'&amp;'.$qstr ?>" id="good_button" class="bo_v_good"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span class="sound_only">추천</span><strong><?php echo number_format($view['wr_good']) ?></strong></a>
+                <a href="<?php echo $good_href.'&amp;'.$qstr ?>" id="good_button" class="bo_v_good"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 추천 <span class="sound_only">추천</span><strong><?php echo number_format($view['wr_good']) ?></strong></a>
                 <b id="bo_v_act_good">이 글을 추천하셨습니다</b>
             </span>
             <?php } ?>
             <?php if ($nogood_href) { ?>
             <span class="bo_v_act_gng">
-                <a href="<?php echo $nogood_href.'&amp;'.$qstr ?>" id="nogood_button" class="bo_v_nogood"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <span class="sound_only">비추천</span><strong><?php echo number_format($view['wr_nogood']) ?></strong></a>
+                <a href="<?php echo $nogood_href.'&amp;'.$qstr ?>" id="nogood_button" class="bo_v_nogood"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 비추천 <span class="sound_only">비추천</span><strong><?php echo number_format($view['wr_nogood']) ?></strong></a>
                 <b id="bo_v_act_nogood"></b>
             </span>
             <?php } ?>
@@ -131,7 +136,7 @@ jQuery(function($){
                 $cnt++;
         }
     }
-	?>
+     ?>
 
     <?php if($cnt) { ?>
     <section id="bo_v_file">
@@ -143,7 +148,7 @@ jQuery(function($){
             if (isset($view['file'][$i]['source']) && $view['file'][$i]['source'] && !$view['file'][$i]['view']) {
          ?>
             <li>
-                <a href="<?php echo $view['file'][$i]['href'];  ?>" class="view_file_download" download>
+                <a href="<?php echo $view['file'][$i]['href'];  ?>" class="view_file_download">
                     <i class="fa fa-download" aria-hidden="true"></i>
                     <strong><?php echo $view['file'][$i]['source'] ?></strong>
                     <?php echo $view['file'][$i]['content'] ?> (<?php echo $view['file'][$i]['size'] ?>)
@@ -199,7 +204,6 @@ jQuery(function($){
     // 코멘트 입출력
     include_once(G5_BBS_PATH.'/view_comment.php');
 	?>
-
 </article>
 
 <script>

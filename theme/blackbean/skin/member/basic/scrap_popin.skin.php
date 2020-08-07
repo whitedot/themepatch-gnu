@@ -6,7 +6,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 ?>
 
 <!-- 스크랩 시작 { -->
-<div id="scrap_do" class="new_win">
+<div id="scrap_do" class="new_win2">
     <h1 id="win_title">스크랩하기</h1>
     <form name="f_scrap_popin" action="./scrap_popin_update.php" method="post">
     <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">

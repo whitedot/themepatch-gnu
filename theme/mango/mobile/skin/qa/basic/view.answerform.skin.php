@@ -39,7 +39,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
             <?php } ?>
             <li>
                 <label for="qa_subject" class="sound_only">제목</label>
-                <input type="text" name="qa_subject" value="" id="qa_subject" required class="frm_input required" size="50" maxlength="255" placeholder="제목">
+                <input type="text" name="qa_subject" value="" id="qa_subject" required class="frm_input full_input required" size="50" maxlength="255" placeholder="제목">
             </li>
             <li>
                 <label for="qa_content" class="sound_only">내용<strong>필수</strong></label>
@@ -49,7 +49,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     </div>
 
     <div class="btn_confirm">
-        <input type="submit" value="답변쓰기" id="btn_submit" accesskey="s" class="btn_submit">
+        <input type="submit" value="답변쓰기" id="btn_submit" accesskey="s" class="btn_submit btn">
     </div>
     </form>
 

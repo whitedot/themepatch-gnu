@@ -16,12 +16,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$connect_skin_url.'/style.css">',
         else $display_location = $location;
     ?>
         <li>
-            <span class="crt_num"><?php echo $list[$i]['num'] ?></span>
-            <span class="crt_profile"><?php echo get_member_profile_img($list[$i]['mb_id']); ?></span>
-            <div class="crt_info">
-            	<span class="crt_name"><?php echo $list[$i]['name'] ?></span>
-            	<span class="crt_lct"><?php echo $display_location ?></span>  
-            </div>
+            <span class="crt crt_num"><?php echo $list[$i]['num'] ?></span>
+            <span class="crt crt_name"><?php echo get_member_profile_img($list[$i]['mb_id']); ?><?php echo $list[$i]['name'] ?></span>
+            <span class="crt crt_lct"><i class="fa fa-list-alt" aria-hidden="true"></i> <?php echo $display_location ?></span>
         </li>
     <?php
     }

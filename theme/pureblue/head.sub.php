@@ -13,8 +13,8 @@ else {
     $g5_head_title .= " | ".$config['cf_title'];
 }
 
-$g5['title'] = strip_tags($g5['title']);
-$g5_head_title = strip_tags($g5_head_title);
+$g5['title'] = strip_tags(get_text($g5['title']));
+$g5_head_title = strip_tags(get_text($g5_head_title));
 
 // 현재 접속자
 // 게시판 제목에 ' 포함되면 오류 발생
@@ -32,7 +32,7 @@ header("Pragma: no-cache"); // HTTP/1.0
 */
 ?>
 <!doctype html>
-<html lang="ko">
+<html lang="ko" id="html_wrap">
 <head>
 <meta charset="utf-8">
 <?php
@@ -49,7 +49,7 @@ if($config['cf_add_meta'])
     echo $config['cf_add_meta'].PHP_EOL;
 ?>
 <title><?php echo $g5_head_title; ?></title>
-<link rel="stylesheet" href="<?php echo run_replace('head_css_url', G5_THEME_CSS_URL.'/'.(G5_IS_MOBILE ? 'mobile' : 'default').'.css?ver='.G5_CSS_VER, G5_THEME_URL); ?>">
+<link rel="stylesheet" href="<?php echo G5_THEME_CSS_URL; ?>/<?php echo G5_IS_MOBILE ? 'mobile' : 'default'; ?>.css?ver=<?php echo G5_CSS_VER; ?>">
 <!--[if lte IE 8]>
 <script src="<?php echo G5_JS_URL ?>/html5.js"></script>
 <![endif]-->
@@ -57,6 +57,7 @@ if($config['cf_add_meta'])
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "<?php echo G5_URL ?>";
 var g5_bbs_url   = "<?php echo G5_BBS_URL ?>";
+var g5_theme_mobile_url = "<?php echo G5_URL.'/'.G5_THEME_DIR.'/'.$config['cf_theme'].'/mobile' ?>";
 var g5_is_member = "<?php echo isset($is_member)?$is_member:''; ?>";
 var g5_is_admin  = "<?php echo isset($is_admin)?$is_admin:''; ?>";
 var g5_is_mobile = "<?php echo G5_IS_MOBILE ?>";
@@ -74,8 +75,10 @@ add_javascript('<script src="'.G5_JS_URL.'/wrest.js?ver='.G5_JS_VER.'"></script>
 add_javascript('<script src="'.G5_JS_URL.'/placeholders.min.js"></script>', 0);
 add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/font-awesome/css/font-awesome.min.css">', 0);
 
+add_javascript('<script src="'.G5_THEME_JS_URL.'/theme_common.js"></script>', 1);
+
 if(G5_IS_MOBILE) {
-    add_javascript('<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>', 1); // overflow scroll 감지
+    echo '<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>'.PHP_EOL; // overflow scroll 감지
 }
 if(!defined('G5_IS_ADMIN'))
     echo $config['cf_add_script'];

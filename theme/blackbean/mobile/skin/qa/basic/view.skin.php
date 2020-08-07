@@ -9,12 +9,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$qa_skin_url.'/style.css">', 0);
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 
 <ul class="btn_top top btn_bo_user"> 
-	<li><a href="<?php echo $list_href ?>" class="btn_b03 btn"><i class="fa fa-list" aria-hidden="true"></i><span class="sound_only">목록</span></a></li>
+	<li><a href="<?php echo $list_href ?>" class="btn_b01 btn2"><i class="fa fa-list" aria-hidden="true"></i><span class="sound_only">목록</span></a></li>
     <?php if ($write_href) { ?>
-    <li><a href="<?php echo $write_href ?>" class="btn_b03 btn"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</a></li>
+    <li><a href="<?php echo $write_href ?>" class="btn_b01 btn2"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</a></li>
     <?php } ?>
 	<li>
-		<button type="button" class="btn_more_opt btn_b03 btn"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
+		<button type="button" class="btn_more_opt btn_b01 btn2"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
     	<?php ob_start(); ?>
         <ul class="more_opt">
         	<?php if ($delete_href) { ?><li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;"><i class="fa fa-trash-o" aria-hidden="true"></i> 삭제</a></li><?php } ?>
@@ -99,7 +99,7 @@ $(".btn_more_opt").on("click", function() {
             for ($i=0; $i<$view['download_count']; $i++) {
              ?>
                 <li>
-                    <a href="<?php echo $view['download_href'][$i];  ?>" class="view_file_download" download>
+                    <a href="<?php echo $view['download_href'][$i];  ?>" class="view_file_download">
                         <img src="<?php echo $qa_skin_url ?>/img/icon_file.gif" alt="첨부">
                         <strong><?php echo $view['download_source'][$i] ?></strong>
                     </a>
@@ -115,8 +115,8 @@ $(".btn_more_opt").on("click", function() {
     
     <?php if ($prev_href || $next_href) { ?>
     <ul class="bo_v_nb">
-        <?php if ($prev_href) { ?><li class="bo_v_prev"><a href="<?php echo $prev_href ?>"><i class="fa fa-chevron-up" aria-hidden="true"></i><span class="sound_only">이전글</span> <?php echo $prev_wr_subject;?></a></li><?php } ?>
-        <?php if ($next_href) { ?><li class="bo_v_next"><a href="<?php echo $next_href ?>"><i class="fa fa-chevron-down" aria-hidden="true"></i><span class="sound_only">다음글</span> <?php echo $next_wr_subject;?></a></li><?php } ?>
+        <?php if ($prev_href) { ?><li class="bo_v_prev"><a href="<?php echo $prev_href ?>"><i class="fa fa-chevron-up" aria-hidden="true"></i> 이전글 <?php echo $prev_wr_subject;?></a></li><?php } ?>
+        <?php if ($next_href) { ?><li class="bo_v_next"><a href="<?php echo $next_href ?>"><i class="fa fa-chevron-down" aria-hidden="true"></i> 다음글 <?php echo $next_wr_subject;?></a></li><?php } ?>
     </ul>
     <?php } ?>
 </article>
@@ -137,7 +137,6 @@ if(!$view['qa_type']) {
     <h2>연관질문</h2>
 
     <div class="list_01">
-
         <ul>
         <?php
             for($i=0; $i<$view['rel_count']; $i++) {
@@ -151,7 +150,7 @@ if(!$view['qa_type']) {
                     </a>
                 </div>
                 <div class="li_info">
-                    <span class="li_stat <?php echo ($rel_list[$i]['qa_status'] ? 'txt_done' : 'txt_rdy'); ?>"><?php echo ($rel_list[$i]['qa_status'] ? '답변완료' : '답변대기'); ?></span>
+                    <span class="li_stat <?php echo ($list[$i]['qa_status'] ? 'txt_done' : 'txt_rdy'); ?>"><?php echo ($rel_list[$i]['qa_status'] ? '답변완료' : '답변대기'); ?></span>
                     <span class="li_date"><?php echo $rel_list[$i]['date']; ?></span>
                 </div>
             </li>

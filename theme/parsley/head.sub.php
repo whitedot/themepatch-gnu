@@ -32,7 +32,7 @@ header("Pragma: no-cache"); // HTTP/1.0
 */
 ?>
 <!doctype html>
-<html lang="ko">
+<html lang="ko" id="html_wrap">
 <head>
 <meta charset="utf-8">
 <?php
@@ -57,6 +57,7 @@ if($config['cf_add_meta'])
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "<?php echo G5_URL ?>";
 var g5_bbs_url   = "<?php echo G5_BBS_URL ?>";
+var g5_theme_mobile_url = "<?php echo G5_URL.'/'.G5_THEME_DIR.'/'.$config['cf_theme'].'/mobile' ?>";
 var g5_is_member = "<?php echo isset($is_member)?$is_member:''; ?>";
 var g5_is_admin  = "<?php echo isset($is_admin)?$is_admin:''; ?>";
 var g5_is_mobile = "<?php echo G5_IS_MOBILE ?>";
@@ -74,8 +75,14 @@ add_javascript('<script src="'.G5_JS_URL.'/wrest.js?ver='.G5_JS_VER.'"></script>
 add_javascript('<script src="'.G5_JS_URL.'/placeholders.min.js"></script>', 0);
 add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/font-awesome/css/font-awesome.min.css">', 0);
 
+add_javascript('<script src="'.G5_THEME_JS_URL.'/theme_common.js"></script>', 1);
+add_javascript('<script src="//cdn.muicss.com/mui-latest/js/mui.min.js"></script>', 1);
+add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_CSS_URL.'/mui.min.css">', 1);
+?>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<?php
 if(G5_IS_MOBILE) {
-    add_javascript('<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>', 1); // overflow scroll 감지
+    echo '<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>'.PHP_EOL; // overflow scroll 감지
 }
 if(!defined('G5_IS_ADMIN'))
     echo $config['cf_add_script'];

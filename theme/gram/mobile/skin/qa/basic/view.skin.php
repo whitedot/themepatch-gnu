@@ -99,7 +99,7 @@ $(".btn_more_opt").on("click", function() {
             for ($i=0; $i<$view['download_count']; $i++) {
              ?>
                 <li>
-                    <a href="<?php echo $view['download_href'][$i];  ?>" class="view_file_download" download>
+                    <a href="<?php echo $view['download_href'][$i];  ?>" class="view_file_download">
                         <img src="<?php echo $qa_skin_url ?>/img/icon_file.gif" alt="첨부">
                         <strong><?php echo $view['download_source'][$i] ?></strong>
                     </a>
@@ -151,7 +151,7 @@ if(!$view['qa_type']) {
                     </a>
                 </div>
                 <div class="li_info">
-                    <span class="li_stat <?php echo ($rel_list[$i]['qa_status'] ? 'txt_done' : 'txt_rdy'); ?>"><?php echo ($rel_list[$i]['qa_status'] ? '답변완료' : '답변대기'); ?></span>
+                    <span class="li_stat <?php echo ($list[$i]['qa_status'] ? 'txt_done' : 'txt_rdy'); ?>"><?php echo ($rel_list[$i]['qa_status'] ? '답변완료' : '답변대기'); ?></span>
                     <span class="li_date"><?php echo $rel_list[$i]['date']; ?></span>
                 </div>
             </li>

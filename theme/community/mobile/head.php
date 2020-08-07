@@ -23,7 +23,8 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
     <div id="hd_wrapper">
 
         <div id="logo">
-            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/m_logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
+        	<a href="<?php echo G5_URL ?>"><img src="<?php echo G5_THEME_IMG_URL ?>/logo_m1.png" alt="<?php echo $config['cf_title']; ?>"></a>
+            <!-- <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/m_logo.png" alt="<?php echo $config['cf_title']; ?>"></a> -->
         </div>
 
         <button type="button" id="gnb_open" class="hd_opener"><i class="fa fa-bars" aria-hidden="true"></i><span class="sound_only"> 메뉴열기</span></button>
@@ -44,6 +45,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
                     $k = 0;
                     foreach( (array) $row['sub'] as $row2 ){
 						if( empty($row2) ) continue;
+
                         if($k == 0)
                             echo '<button type="button" class="btn_gnb_op"><span class="sound_only">하위분류</span></button><ul class="gnb_2dul">'.PHP_EOL;
                     ?>
@@ -72,9 +74,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
             </ul>
         </div>
 
-        <button type="button" id="user_btn" class="hd_opener"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">사용자메뉴</span></button>
-        <div class="hd_div" id="user_menu">
-            <button type="button" id="user_close" class="hd_closer"><span class="sound_only">메뉴 닫기</span><i class="fa fa-times" aria-hidden="true"></i></button>
+		<div id="user_menu">
             <div id="hd_sch">
                 <h2>사이트 내 전체검색</h2>
                 <form name="fsearchbox" action="<?php echo G5_BBS_URL ?>/search.php" onsubmit="return fsearchbox_submit(this);" method="get">
@@ -113,12 +113,6 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
                 </script>
             </div>
             <?php echo popular('theme/basic'); // 인기검색어 ?>
-            <div id="text_size">
-            <!-- font_resize('엘리먼트id', '제거할 class', '추가할 class'); -->
-                <button id="size_down" onclick="font_resize('container', 'ts_up ts_up2', '', this);" class="select"><img src="<?php echo G5_URL; ?>/img/ts01.png" width="20" alt="기본"></button>
-                <button id="size_def" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up', this);"><img src="<?php echo G5_URL; ?>/img/ts02.png" width="20" alt="크게"></button>
-                <button id="size_up" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up2', this);"><img src="<?php echo G5_URL; ?>/img/ts03.png" width="20" alt="더크게"></button>
-            </div>
         </div>
 
         <script>

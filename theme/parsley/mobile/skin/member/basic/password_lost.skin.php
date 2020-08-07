@@ -15,15 +15,16 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
                 회원가입 시 등록하신 이메일 주소를 입력해 주세요.<br>
                 해당 이메일로 아이디와 비밀번호 정보를 보내드립니다.
             </p>
-            <input type="email" id="mb_email" name="mb_email" placeholder="이메일주소(필수)" required class="frm_input email">
+            <input type="email" id="mb_email" name="mb_email" placeholder="이메일주소" required class="frm_input full_input required email">
         </fieldset>
         <?php echo captcha_html(); ?>
-        <div class="win_btn">
-            <button type="submit" class="btn_submit">정보찾기</button>
-            <button type="button" onclick="window.close();" class="btn_close">창닫기</button>
-        </div>
-		</form>
-	</div>
+
+	    <div class="win_btn">
+	        <button type="submit" class="btn_submit">정보찾기</button>
+	        <button type="button" onclick="window.close();" class="btn_close">창닫기</button>
+	    </div>
+	    </form>
+    </div>
 </div>
 
 <script>

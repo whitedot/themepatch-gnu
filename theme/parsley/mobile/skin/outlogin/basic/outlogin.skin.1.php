@@ -5,10 +5,12 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.$outlogin_skin_url.'/style.css">', 0);
 ?>
 
-<aside id="ol_before" class="ol">
-    <h2>회원로그인</h2>
-    <a href="<?php echo G5_BBS_URL ?>/login.php" class="btn_b01">로그인</a>
-	<a href="<?php echo G5_BBS_URL ?>/register.php" class="btn_b02">회원가입</a>
-</aside>
+<a href="<?php echo G5_BBS_URL ?>/login.php?url=<?php echo urlencode($_SERVER['REDIRECT_SCRIPT_URI']) ?>" class="tnb_login">로그인</a>
 
+<div class="tnb_member">
+	<ul>
+        <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
+		<li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
+    </ul>
+</div>
 <!-- 로그인 전 외부로그인 끝 -->

@@ -22,7 +22,6 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 		$str = preg_replace("/\[\<a\s.*href\=\"(http|https|ftp|mms)\:\/\/([^[:space:]]+)\.(mp3|wma|wmv|asf|asx|mpg|mpeg)\".*\<\/a\>\]/i", "<script>doc_write(obj_movie('$1://$2.$3'));</script>", $str);
 		$c_reply_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=c#bo_vc_w';
 		$c_edit_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=cu#bo_vc_w';
-        $is_comment_reply_edit = ($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) ? 1 : 0;
     ?>
     <article id="c_<?php echo $comment_id ?>" <?php if ($cmt_depth) { ?>style="margin-left:<?php echo $cmt_depth ?>px;border-bottom-color:#f8f8f8"<?php } ?>>
         <div class="comment_inner">
@@ -38,16 +37,14 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                 <?php
                 include(G5_SNS_PATH."/view_comment_list.sns.skin.php");
                 ?>
-                <?php if( $is_comment_reply_edit ){ ?>
                 <div class="bo_vl_opt">
-                    <button type="button" class="btn_cm_opt btn_b03 btn"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">댓글 옵션</span></button>
+                    <button type="button" class="btn_cm_opt btn_b03 btn2"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">댓글 옵션</span></button>
                     <ul class="bo_vc_act">
                         <?php if ($list[$i]['is_reply']) { ?><li><a href="<?php echo $c_reply_href; ?>" onclick="comment_box('<?php echo $comment_id ?>', 'c'); return false;">답변</a></li><?php } ?>
                         <?php if ($list[$i]['is_edit']) { ?><li><a href="<?php echo $c_edit_href; ?>" onclick="comment_box('<?php echo $comment_id ?>', 'cu'); return false;">수정</a></li><?php } ?>
                         <?php if ($list[$i]['is_del']) { ?><li><a href="<?php echo $list[$i]['del_link']; ?>" onclick="return comment_delete();">삭제</a></li><?php } ?>
                     </ul>
                 </div>
-                <?php } ?>
                 <script>
                 $(function() {			    
                     // 댓글 옵션창 열기
@@ -72,6 +69,8 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                 </p>
 
                 <?php if($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) {
+                    $query_string = clean_query_string($_SERVER['QUERY_STRING']);
+
                     if($w == 'cu') {
                         $sql = " select wr_id, wr_content, mb_id from $write_table where wr_id = '$c_id' and wr_is_comment = '1' ";
                         $cmt = sql_fetch($sql);
@@ -143,10 +142,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                     </label>
                 </span>
             </div>
-            <div class="btn_confirm">
-                <button type="submit" id="btn_submit" class="btn_submit">댓글등록</button>
-            </div>
-
+            <button type="submit" id="btn_submit" class="btn_submit">댓글등록</button>
         </div>
         </form>
     </aside>

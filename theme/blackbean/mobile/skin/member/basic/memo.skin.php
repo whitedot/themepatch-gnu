@@ -6,7 +6,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 ?>
 
 <!-- 쪽지 목록 시작 { -->
-<div id="memo_list" class="new_win">
+<div id="memo_list" class="new_win2">
     <h1 id="win_title">
     	<?php echo $g5['title'] ?>
     	<div class="win_total">전체 <?php echo $kind_title ?>쪽지 <?php echo $total_count ?>통<br></div>
@@ -19,10 +19,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         </ul>
         
         <div class="memo_list">
-            <ul>       	
-	            <?php for ($i=0; $i<count($list); $i++) {
+            <ul>
+	            <?php
+                for ($i=0; $i<count($list); $i++) {
                 $readed = (substr($list[$i]['me_read_datetime'],0,1) == 0) ? '' : 'read';
-                $memo_preview = utf8_strcut(strip_tags($list[$i]['me_memo']), 17, '..');
+                $memo_preview = utf8_strcut(strip_tags($list[$i]['me_memo']), 30, '..');
                 ?>
 	            <li class="<?php echo $readed; ?>">
 	            	<div class="memo_li profile_big_img">
@@ -30,15 +31,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	            		<?php if (! $readed){ ?><span class="no_read">안 읽은 쪽지</span><?php } ?>
 	            	</div>
 	                <div class="memo_li memo_name">
-	                	<?php echo $list[$i]['name']; ?> <span class="memo_datetime"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['send_datetime'] ?></span>
+	                	<?php echo $list[$i]['name']; ?> <span class="memo_datetime"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['send_datetime']; ?></span>
 						<div class="memo_preview">
-						    <a href="<?php echo $list[$i]['view_href'] ?>"><?php echo $memo_preview; ?></a>
+						    <a href="<?php echo $list[$i]['view_href']; ?>"><?php echo $memo_preview; ?></a>
                         </div>
 					</div>	
-	                <?php /* 쪽지 읽은 시간 echo $list[$i]['read_datetime']; */ ?>	
-					<a href="<?php echo $list[$i]['del_href'] ?>" onclick="del(this.href); return false;" class="memo_del"><i class="fa fa-trash-o" aria-hidden="true"></i> <span class="sound_only">삭제</span></a>
+					<a href="<?php echo $list[$i]['del_href']; ?>" onclick="del(this.href); return false;" class="memo_del"><i class="fa fa-trash-o" aria-hidden="true"></i> <span class="sound_only">삭제</span></a>
 	            </li>
-	            <?php }  ?>
+	            <?php } ?>
 	            <?php if ($i==0) { echo '<li class="empty_table">자료가 없습니다.</li>'; }  ?>
             </ul>
         </div>

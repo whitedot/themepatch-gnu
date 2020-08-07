@@ -1,12 +1,20 @@
 @charset "utf-8";
 
-/* 새글 스킨 (latest) */
-.notice {position:relative;padding:15px 50px}
-.notice h2 {margin-bottom:20px}
-.notice h2 a {font-size:1.2em;color:#fff}
-.notice li {text-overflow:ellipsis;overflow:hidden;white-space:nowrap;border-bottom:1px solid #343434}
-.notice li a {color:#e3e3e3;padding:15px 0;display:inline-block}
-.notice li .lock_icon {display:inline-block;line-height:14px;width:16px;font-size:0.833em;color:#4f818c;background:#cbe3e8;text-align:center;border-radius:2px;font-size: 12px;border:1px solid #a2c6ce;vertical-align:baseline}
-.notice li .new_icon {display:inline-block;line-height:16px;width:16px;font-size:0.833em;color:#ffff00;background:#6db142;text-align:center;margin-right:3px;border-radius:2px;vertical-align:baseline}
-.notice .cnt_cm {background:#5c85c1;color:#fff;font-size:11px;height:16px;line-height:16px;padding:0 5px;border-radius:3px;white-space:nowrap;margin-left:5px}
+/* 최근게시물 스킨 (latest) */
+.lt_notice {position:relative;background:#fe5d5d;border-radius:5px;margin:0 0 15px;padding: 0 110px;line-height:60px;overflow:hidden;font-size:1.077em;color:#fff}
+.lt_notice .lt_title{float:left;width:100px;position:absolute;top:0;left:0;background:#f54e4e;color:#fff;padding:0 0 0 20px;font-weight:bold}
+.lt_notice ul {display:none}
+.lt_notice li{text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+.lt_notice li a{color:#fff}
+.lt_notice .bx-controls-direction{position:absolute;top:10px;right:10px}
+.lt_notice .bx-controls-direction .bx-prev{background:url('./img/btn_prev.png') no-repeat 50% 50% #f54e4e;margin-right:3px}
+.lt_notice .bx-controls-direction .bx-next{background:url('./img/btn_next.png') no-repeat 50% 50% #f54e4e}
+.lt_notice .bx-controls-direction a{display:block;width:40px;height:40px;color:#fff;border-radius:30px;text-indent:-888px;overflow:hidden;float:left;}
+.lt_notice .bx-controls-direction a:hover{background-color:#e83636}
 
+
+@media (max-width: 969px){
+    .lt_notice {line-height:50px;padding-left:60px;padding-right:20px}
+    .lt_notice .bx-controls-direction {display:none}
+    .lt_notice .lt_title{width:50px}
+}

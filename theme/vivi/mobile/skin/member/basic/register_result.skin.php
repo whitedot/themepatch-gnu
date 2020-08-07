@@ -5,11 +5,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
 ?>
 <div id="reg_result">
-    <h2><strong>회원가입이 완료</strong>되었습니다.</h2>
-    <div class="reg_result_wr">
-        <p class="reg_cong">
-            <strong><?php echo get_text($mb['mb_name']); ?></strong>님의 회원가입을 진심으로 축하합니다.<br>
-        </p>
+	<div class="reg_result_wr">
+		<h2><strong><?php echo get_text($mb['mb_name']); ?></strong>님의 회원가입을 진심으로 축하합니다.</h2>
 
         <?php if (is_use_email_certify()) { ?>
         <p>

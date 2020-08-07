@@ -8,60 +8,123 @@ if (G5_IS_MOBILE) {
 }
 
 include_once(G5_THEME_PATH.'/head.php');
+
+add_javascript('<script src="'.G5_THEME_JS_URL.'/unslider.min.js"></script>', 10);
 ?>
 
-<h2 class="sound_only">최신글</h2>
-
-<div class="latest_top_wr">
-    <?php
-    // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
-    // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
-    // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
-    echo latest('theme/pic_list', 'free', 4, 23);		// 최소설치시 자동생성되는 자유게시판
-	echo latest('theme/pic_list', 'qa', 4, 23);			// 최소설치시 자동생성되는 질문답변게시판
-	echo latest('theme/pic_list', 'notice', 4, 23);		// 최소설치시 자동생성되는 공지사항게시판
-    ?>
-</div>
-<div class="latest_wr">
-    <!-- 사진 최신글2 { -->
-    <?php
-    // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
-    // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
-    // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
-    echo latest('theme/pic_block', 'gallery', 4, 23);		// 최소설치시 자동생성되는 갤러리게시판
-    ?>
-    <!-- } 사진 최신글2 끝 -->
-</div>
-
-<div class="latest_wr">
-<!-- 최신글 시작 { -->
-    <?php
-    //  최신글
-    $sql = " select bo_table
-                from `{$g5['board_table']}` a left join `{$g5['group_table']}` b on (a.gr_id=b.gr_id)
-                where a.bo_device <> 'mobile' ";
-    if(!$is_admin)
-	$sql .= " and a.bo_use_cert = '' ";
-    $sql .= " and a.bo_table not in ('notice', 'gallery') ";     //공지사항과 갤러리 게시판은 제외
-    $sql .= " order by b.gr_order, a.bo_order ";
-    $result = sql_query($sql);
-    for ($i=0; $row=sql_fetch_array($result); $i++) {
-		$lt_style = '';
-    	if ($i%3 !== 0 ) $lt_style = "margin-left:2%";
-    ?>
-    <div style="float:left;<?php echo $lt_style ?>" class="lt_wr">
-        <?php
-        // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
-        // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
-        // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
-        echo latest('theme/basic', $row['bo_table'], 6, 24);
-        ?>
+<!--메인배너 {-->
+<div id="main_bn_box">
+    <div id="main_bn">
+        <ul class="bn_ul">
+            <li class="bn_bg1">
+                <div class="bn_wr"><a href="#none"><img src="<?php echo G5_THEME_IMG_URL ?>/main_banner.png" alt="메인베너" /></a></div>
+            </li>
+            <li class="bn_bg1">
+                <div class="bn_wr"><a href="#none"><img src="<?php echo G5_THEME_IMG_URL ?>/main_banner.png" alt="메인베너" /></a></div>
+            </li>
+            <li class="bn_bg1">
+                <div class="bn_wr"><a href="#none"><img src="<?php echo G5_THEME_IMG_URL ?>/main_banner.png" alt="메인베너" /></a></div>
+            </li>
+            <li class="bn_bg1">
+                <div class="bn_wr"><a href="#none"><img src="<?php echo G5_THEME_IMG_URL ?>/main_banner.png" alt="메인베너" /></a></div>
+            </li>
+        </ul>
     </div>
-    <?php
-    }
-    ?>
-    <!-- } 최신글 끝 -->
 </div>
+<!--} 메인배너-->
+<script>
+$(function() {
+    $("#main_bn").unslider({
+        speed: 700,               //  The speed to animate each slide (in milliseconds)
+        delay: 3000,              //  The delay between slide animations (in milliseconds)
+        keys: true,               //  Enable keyboard (left, right) arrow shortcuts
+        dots: true,               //  Display dot navigation
+        fluid: false              //  Support responsive design. May break non-responsive designs
+    });
+    $('.unslider-arrow').click(function() {
+        var fn = this.className.split(' ')[1];
+
+        //  Either do unslider.data('unslider').next() or .prev() depending on the className
+        unslider.data('unslider')[fn]();
+        });
+    });
+</script>
+
+
+<section class="idx_cnt">
+	
+	<div class="lt_li lt_li_left">
+		<!-- 전체 게시판 최신글 -->
+		<div class="lt">
+		    <h2 class="lt_title"><a href="<?php echo G5_BBS_URL ?>/new.php">전체 게시판 최신글</a></h2>
+			    <?php
+			    // new_latest('스킨', '출력라인', '글자수', 'is_comment', cache_minute)
+			    echo new_latest('theme/new_latest', 6, 20, false, 5);
+			    ?>
+			<div class="lt_more"><a href="<?php echo G5_BBS_URL ?>/new.php"><span class="sound_only">전체 게시판 최신글</span>더보기</a></div>
+		</div>
+	</div>
+
+	<div class="lt_li">
+		<!-- 최신댓글 -->
+		<div class="lt">
+		    <h2 class="lt_title"><a href="<?php echo G5_BBS_URL ?>/new.php">최신 댓글</a></h2>
+			    <?php
+			    // new_latest('스킨', '출력라인', '글자수', 'is_comment', cache_minute)
+			    echo new_latest('theme/new_latest', 6, 20, true, 5);
+			    ?>
+			<div class="lt_more"><a href="<?php echo G5_BBS_URL ?>/new.php"><span class="sound_only">최신 댓글</span>더보기</a></div>
+		</div>
+	</div>
+
+	<div class="lt_li lt_li_left">
+	    <?php
+	    // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
+	    // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
+	    // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
+	    echo latest('theme/basic', 'commu', 7, 20);
+	    ?>
+	</div>
+	
+	<div class="lt_li">
+	    <?php
+	    // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
+	    // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
+	    // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
+	    echo latest('theme/basic', 'free', 7, 20);
+	    ?>
+	</div>
+	
+	<div class="lt_li lt_li_left">
+	    <?php
+	    // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
+	    // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
+	    // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
+	    echo latest('theme/basic', 'fun', 7, 20);
+	    ?>
+	</div>
+	
+	<div class="lt_li">
+	    <?php
+	    // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
+	    // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
+	    // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
+	    echo latest('theme/basic', 'free', 7, 20);
+	    ?>
+	</div>
+	
+	<?php
+	// 이 함수가 바로 최신글을 추출하는 역할을 합니다.
+	// 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
+	// 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
+	$options = array(
+		'thumb_width'    => 170, // 썸네일 width
+		'thumb_height'   => 149,  // 썸네일 height
+		'content_length' => 40   // 간단내용 길이
+	);
+	echo latest('theme/gallery', 'gallery', 5, 20, 1, $options);
+	?>
+</section>
 
 <?php
 include_once(G5_THEME_PATH.'/tail.php');
